@@ -1,7 +1,7 @@
 --------------------------------------------------
 --	Author:		Stella Silva Weege, Renato Noskoski Kissel
 --	Created:  October 28, 2025
---  Edited: Nov 14, 2025 by Renato Noskoski Kissel
+--  Edited: Nov 14, 2025 by Renato Noskoski Kissel ; Nov 18, 2025 by Lucas Alves de Souza
 --
 --	Project:     	Atividade Prática 3 - ULA
 --	Description: 	Contém a descrição de um somador/subtrator de dois valores com sinal de N bits.
@@ -31,24 +31,24 @@ end adder_subtractor;
 
 architecture behavior of adder_subtractor is
   signal intermediary_carry : std_logic_vector(N downto 0);
-  signal chosed_B           : std_logic_vector(N - 1 downto 0);
+  signal chosen_B           : std_logic_vector(N - 1 downto 0);
 begin
 
-  chosed_B <= input_b when CS = '0' else
-    (not(input_b) + 1);
+  chosen_B <= input_b when CS = '0' else
+    std_logic_vector(to_unsigned(not(input_b)) + 1); -- Lucas: não tá funcionando, vou usar o módulo de complemento de dois pra ficar mais supimpa
 
-  interator : for i in 0 to N - 1 generate
+  iterator : for i in 0 to N - 1 generate
 
     adder : entity work.full_adder(circuito_logico)
       port map
       (
         A    => input_a(i),
-        B    => chosed_B(i),
+        B    => chosen_B(i),
         Cin  => intermediary_carry(i),
         S    => result(i),
         Cout => intermediary_carry(i + 1)
       );
   end generate;
-  -- lógica do overflow: (C_out do MSB) XOR (C_in do MSB)
-  overflow <= intermediary_carry(N) xor intermediary_carry(N - 1);
+  -- lógica do overflow: (C_out do MSB) XOR (C_in do MSB)           lucas: não é o próprio msb??
+  overflow <= intermediary_carry(N);-- xor intermediary_carry(N - 1);
 end architecture behavior;

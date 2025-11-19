@@ -1,0 +1,54 @@
+--------------------------------------------------
+--	Author:      Lucas Alves de Souza
+--	Created:     Nov 18, 2025
+--
+--	Project:     Atividade Prática 3 - ULA
+--	Description: Pequeno testbench para o somador-subtrator.
+--------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity tb_add_subtr is
+end tb_add_subtr;
+
+architecture tb of tb_add_subtr is
+    --inputs e parametros
+    constant N : positive := 32; -- número de bits das entradas
+    signal input_a, input_b : std_logic_vector(N - 1 downto 0);
+    signal CS : std_logic := '0';
+
+    --outputs
+    signal result : std_logic_vector(N - 1 downto 0);
+    signal overflow : std_logic;
+
+    constant passo : TIME := 20 ns;
+
+begin
+
+    DUV : entity work.adder_subtractor(behavior)
+        generic map(N => N)
+        port map
+        (
+        input_a   => input_a,
+        input_b   => input_b,
+        CS    => CS,
+        overflow  => overflow,
+        result => result
+        );
+
+    estimulos : process is
+    begin
+        input_a <= std_logic_vector(to_unsigned(0, input_a'length));
+        input_b <= std_logic_vector(to_unsigned(10, input_a'length));
+        wait for passo;
+        assert(result="00000000000000000000000000001010")
+        report "Fail 0" severity error;
+
+        wait for passo;
+        assert false report "Test done." severity note;
+        wait;
+    end process;
+
+
+end architecture tb;

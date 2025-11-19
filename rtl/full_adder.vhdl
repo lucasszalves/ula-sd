@@ -5,6 +5,7 @@
 --	Project:     Atividade Prática 3 - ULA
 --	Description: Contém a descrição de uma entidade para um full adder, expressando
 --               seu circuito lógico.
+--  TESTADO (Lucas Alves)
 --------------------------------------------------
 
 library IEEE;
