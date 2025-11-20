@@ -1,7 +1,7 @@
 --------------------------------------------------
 --	Author:		Stella Silva Weege, Renato Noskoski Kissel
 --	Created:  October 28, 2025
---  Edited: Nov 14, 2025 by Renato Noskoski Kissel ; Nov 18, 2025 by Lucas Alves de Souza
+--  Edited: Nov 14, 2025 by Renato Noskoski Kissel
 --
 --	Project:     	Atividade Prática 3 - ULA
 --	Description: 	Contém a descrição de um somador/subtrator de dois valores com sinal de N bits.
@@ -30,37 +30,26 @@ entity adder_subtractor is
 end adder_subtractor;
 
 architecture behavior of adder_subtractor is
-  signal c : std_logic_vector(N - 1 downto 0);
-  signal chosen_B, ext_CS : std_logic_vector(N - 1 downto 0);
+  signal intermediary_carry : std_logic_vector(N downto 0);
+  signal chosed_B           : std_logic_vector(N - 1 downto 0);
 begin
 
-    ext_CS <= (others => CS);
-    chosen_B <= input_b xor ext_CS;
+  chosed_B <= input_b when CS = '0' else
+    not(input_b);
+  intermediary_carry(0) <= CS;
 
-    iterator : for i in 0 to N - 1 generate
-        internal : if i = 0 generate
-            fa : entity work.full_adder(circuito_logico)
-            port map
-            (
-                A    => input_a(i),
-                B    => chosen_B(i),
-                Cin  => CS,
-                S    => result(i),
-                Cout => c(i)
-            );
-        else generate
-            fa : entity work.full_adder(circuito_logico)
-            port map
-            (
-                A    => input_a(i),
-                B    => chosen_B(i),
-                Cin  => c(i-1),
-                S    => result(i),
-                Cout => c(i)
-            );
-        end generate internal;
-    end generate iterator;
+  interator : for i in 0 to N - 1 generate
 
-    -- lógica do overflow: (C_out do MSB) XOR (C_in do MSB)
-    overflow <= c(N-1) xor c(N-2);
+    adder : entity work.full_adder(circuito_logico)
+      port map
+      (
+        A    => input_a(i),
+        B    => chosed_B(i),
+        Cin  => intermediary_carry(i),
+        S    => result(i),
+        Cout => intermediary_carry(i + 1)
+      );
+  end generate;
+  -- lógica do overflow: (C_out do MSB) XOR (C_in do MSB)
+  overflow <= intermediary_carry(N) xor intermediary_carry(N - 1);
 end architecture behavior;
