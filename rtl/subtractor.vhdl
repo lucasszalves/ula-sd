@@ -30,8 +30,8 @@ architecture behavior of subtractor is
   signal input_b_negativated : std_logic_vector(N - 1 downto 0);
 
 begin
-  input_b_negativated   <= not(input_b) + 1;
-  intermediary_carry(0) <= '0';
+  input_b_negativated   <= not(input_b);
+  intermediary_carry(0) <= '1';
 
   -- generate para instanciar full_adder apenas uma vez e conseguir subtrair genericamente
   interator : for i in 0 to N - 1 generate
