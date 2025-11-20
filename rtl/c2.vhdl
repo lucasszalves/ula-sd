@@ -4,6 +4,7 @@
 --
 --	Project:     	Atividade Prática 3 - ULA
 --	Description: 	Inverte o sinal da entrada, em complemento de dois
+--  Tested: 19 Nov, 2025 by Lucas Alves de Souza
 --------------------------------------------------
 
 library ieee;

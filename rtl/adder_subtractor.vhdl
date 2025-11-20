@@ -7,6 +7,7 @@
 --	Description: 	Contém a descrição de um somador/subtrator de dois valores com sinal de N bits.
 --			          Realiza a soma quando o controle `CS = '0'` e a subtração quando `CS = '1'`.
 --               	Todas as portas de dados utilizam o tipo `signed`. O controle é std_logic.
+--  Tested: 19 Nov, 2025 by Lucas Alves de Souza
 --------------------------------------------------
 
 library ieee;

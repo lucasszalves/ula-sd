@@ -7,6 +7,7 @@
 --	Description: somador com entradas e sainda em std_logic_vector e std_logic
 --               carry_out e overflow são usados no circuito. O somador é de tamanho
 --               genérico e usar generate para fazer isso.
+--  Tested: 19 Nov, 2025 by Lucas Alves de Souza
 --------------------------------------------------
 
 library IEEE;
