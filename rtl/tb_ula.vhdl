@@ -22,9 +22,10 @@ architecture sim of tb_ula is
   signal S0      : std_logic_vector(N-1 downto 0);
   signal S1      : std_logic_vector(N-1 downto 0);
 
+  signal finished : std_logic := '0';
 begin
 
-  clk <= not clk after 5 ns;
+  
 
   DUT: entity work.ula(structure)
     generic map (N => N)
@@ -42,6 +43,8 @@ begin
       S1 => S1
     );
 
+    clk <= not clk after 10 ns when finished /= '1' else '0';
+
   estimulos: process
   begin
     --------------------------------------------------------------------
@@ -54,8 +57,8 @@ begin
     --------------------------------------------------------------------
     -- 1) ADD: 5 + 3 = 8
     --------------------------------------------------------------------
-    entA <= x"05";
-    entB <= x"03";
+    entA <= std_logic_vector(to_signed(5, entA'length));
+    entB <= std_logic_vector(to_signed(3, entB'length));
     ULAOp <= "10";
     funct <= "100000"; -- ADD
 
@@ -71,10 +74,11 @@ begin
     --------------------------------------------------------------------
     -- 2) SUB: 9 - 2 = 7
     --------------------------------------------------------------------
-    entA <= x"09";
-    entB <= x"02";
     ULAOp <= "10";
     funct <= "100010"; -- SUB
+    entA <= std_logic_vector(to_signed(9, entA'length));
+    entB <= std_logic_vector(to_signed(2, entB'length));
+    
 
     iniciar <= '1'; wait for 10 ns;
     iniciar <= '0';
@@ -88,8 +92,9 @@ begin
     --------------------------------------------------------------------
     -- 3) MULT: 6 × 3 = 18  → S1:S0 = 16-bit result (para N=8)
     --------------------------------------------------------------------
-    entA <= x"06";
-    entB <= x"03";
+    entA <= std_logic_vector(to_signed(6, entA'length));
+    entB <= std_logic_vector(to_signed(3, entB'length));
+
     ULAOp <= "01";     -- ativa FSM
     funct <= "000000"; -- ignorado
 
@@ -110,8 +115,8 @@ begin
     --------------------------------------------------------------------
     -- 4) DIV: 4 / 8 = quociente 0, resto 4
     --------------------------------------------------------------------
-    entA <= x"04";
-    entB <= x"08";
+    entA <= std_logic_vector(to_signed(4, entA'length));
+    entB <= std_logic_vector(to_signed(8, entB'length));
     ULAOp <= "01";
     funct <= "000000";
 
@@ -127,6 +132,8 @@ begin
     assert S1 = std_logic_vector(to_unsigned(4, N))
       report "DIV resto errado"
       severity error;
+
+    finished <= '1';
 
     wait;
   end process;

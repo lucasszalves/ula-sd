@@ -2,7 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.ula_pack.all;
 use ieee.numeric_std.all;
-use ieee.std_logic_arith.all;
 
 -- Bloco de Controle (BC) da ULA.
 -- Responsável por gerar os sinais de controle para o bloco operativo (BO),
@@ -62,8 +61,8 @@ begin
       q      => B);
 
   -- sinais de status Amz e Bmz
-  out_status.Amz <= A(high(A));
-  out_status.Bmz <= B(high(B));
+  out_status.Amz <= A(A'high);
+  out_status.Bmz <= B(B'high);
   
   -- bloco somador/subtrator
   add_sub : entity work.adder_subtractor(behavior)
@@ -100,8 +99,8 @@ begin
       s_mux => result_mux1);
 
   -- mux2 (e entrada 1 de mux2)
-  OV_xor_N <= out_status.OV xor result_add_sub(high(result_add_sub));
-  ent1_mux2 <= std_logic_vector(resize(unsigned(OV_xor_N), N));
+  OV_xor_N <= out_status.OV xor result_add_sub(result_add_sub'high);
+  ent1_mux2 <= (others => OV_xor_N);
 
   mux_2 : entity work.mux_2to1(behavior)
     generic map(

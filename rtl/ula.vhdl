@@ -38,7 +38,7 @@ begin
   entradas_main.dados.entULAOp    <= ULAOp;
   entradas_main.controles.iniciar <= iniciar;
 
-  BC__ : entity work.ula_bc(behavior)
+  BC : entity work.ula_bc(behavior)
     port map
     (
       clk          => clk,
@@ -48,7 +48,7 @@ begin
       out_controle => saidas_main.controles,
       out_comandos => comandos_main
     );
-  BO__ : entity work.ula_bo(structure)
+  BO : entity work.ula_bo(structure)
     generic map(
       N => N
     )

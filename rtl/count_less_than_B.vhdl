@@ -30,7 +30,7 @@ architecture behavior of count_less_than_B is
   signal overflow           : std_logic;
 
 begin
-  subtractor_ : entity work.subtractor(behavior)
+  subtractor : entity work.subtractor(behavior)
     generic map(N => N)
     port map
     (
