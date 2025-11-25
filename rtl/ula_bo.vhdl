@@ -212,8 +212,8 @@ begin
 
     -------------------------PARTE DO MEIO FINALIZADA---------------------------
 
-one <= std_logic_vector(resize(unsigned("1"), N);
-zero <= std_logic_vector(resize(unsigned("0"), N);
+one <= std_logic_vector(resize(unsigned("1"), N));
+zero <= std_logic_vector(resize(unsigned("0"), N));
 
 out_status.Bz <= '1' when unsigned(B) = 0 else '0';
 
