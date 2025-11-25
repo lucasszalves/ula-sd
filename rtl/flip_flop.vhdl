@@ -10,6 +10,7 @@ entity flip_flop is
 end entity flip_flop;
 
 architecture behavior of flip_flop is
+    signal rst : std_logic := '0';  -- inicializa se necessário
 begin
 
     process(clk, rst)
