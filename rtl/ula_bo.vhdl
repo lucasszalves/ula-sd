@@ -27,12 +27,16 @@ architecture structure of ula_bo is
   signal result_mux6, result_mux7, count_r, result_mux8, result_count_r_less : std_logic_vector(N - 1 downto 0);
   signal ULAop : std_logic_vector (1 downto 0);
   signal funct : std_logic_vector (5 downto 0);
-  signal result_mux3, result_mux4, result_mux5, result_mux9, result_mux10, result_soma_P, PH_Q, PL, um, zero : std_logic_vector(N - 1 downto 0);
-  signal result_muxFF, carry_out_soma_P, out_FF : std_logic;
+  signal result_mux3, result_mux4, result_mux5, result_mux9, result_mux10, result_soma_P, PH_Q, PL, one, zero : std_logic_vector(N - 1 downto 0);
+  signal result_muxFF, count_soma_P, out_FF : std_logic;
+
+
+
+  signal bit_in_PL : std_logic;
 begin
 
 -------------------------PARTE DA MADU FINALIZADA---------------------------
-  
+
   -- registrador para passar funct
   reg_funct : entity work.std_logic_register(behavior)
     generic map(
@@ -212,8 +216,8 @@ begin
 
     -------------------------PARTE DO MEIO FINALIZADA---------------------------
 
-one <= std_logic_vector(resize(unsigned("1"), N));
-zero <= std_logic_vector(resize(unsigned("0"), N));
+one  <= std_logic_vector(resize(to_unsigned(1, 1), N));
+zero <= (others => '0');
 
 out_status.Bz <= '1' when unsigned(B) = 0 else '0';
 
@@ -267,16 +271,14 @@ mux_10 : entity work.mux_2to1(behavior)
       in_1 => result_mux2,
       s_mux => result_mux10);
 
-mux_FF : entity work.mux_2to1(behavior)
-    generic map(
-      N => 1)
-    port map
-    (
-      sel   => in_comandos.mFF,
-      in_0  => count_soma_P,
-      in_1 => "0",
-      s_mux => result_muxFF);
-      
+mux_FF : entity work.mux_1bit(rtl)
+  port map(
+    sel   => in_comandos.mFF,
+    in_0  => count_soma_P,
+    in_1  => '0',
+    s_mux => result_muxFF
+  );
+
 somador_P : entity work.adder(behavior)
 	generic map (
     		N => N)

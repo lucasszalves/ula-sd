@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 entity ula is
   generic (
-    N : positive := 8
+    N : positive := 32
   );
   port (
     clk     : in std_logic;
