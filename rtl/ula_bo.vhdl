@@ -273,7 +273,7 @@ mux_FF : entity work.mux_2to1(behavior)
     port map
     (
       sel   => in_comandos.mFF,
-      in_0  => cout_soma_P,
+      in_0  => count_soma_P,
       in_1 => "0",
       s_mux => result_muxFF);
       
@@ -284,7 +284,7 @@ somador_P : entity work.adder(behavior)
 	    input_a => result_mux3,
 	    input_b => PH_Q,
 	    result => result_soma_P,
-	    carry_out => cout_soma_P,
+	    carry_out => count_soma_P,
 	    overflow  => open);
 
 flip_flop_FF : entity work.flip_flop(behavior)
