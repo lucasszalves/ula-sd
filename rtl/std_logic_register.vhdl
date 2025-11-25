@@ -29,16 +29,17 @@ entity std_logic_register is
 end std_logic_register;
 
 architecture behavior of std_logic_register is
-
+  signal q_int : std_logic_vector(N-1 downto 0) := (others => '0'); -- registrador interno inicializado
 begin
   process (clk)
   begin
     if (rising_edge(clk)) then
       if enable = '1' then
-        q <= d;
+        q_int <= d;
       end if;
     end if;
   end process;
 
   -- Se enable = '1', o valor de d deve ser atribuído a q.
+  q <= q_int;
 end architecture behavior;
