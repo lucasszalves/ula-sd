@@ -25,7 +25,7 @@ entity adder_subtractor is
     input_a  : in std_logic_vector(N - 1 downto 0); -- entrada A com N bits com sinal
     input_b  : in std_logic_vector(N - 1 downto 0); -- entrada B com N bits com sinal
     CS       : in std_logic; -- controle do somador/subtrator
-    overflow : out std_logic; -- sinal de overflow
+    overflow : out std_logic := '0'; -- sinal de overflow
     result   : out std_logic_vector(N - 1 downto 0) -- saída da soma com sinal
   );
 end adder_subtractor;

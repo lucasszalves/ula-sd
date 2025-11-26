@@ -30,6 +30,8 @@ architecture sim of tb_ula is
   signal S0      : std_logic_vector(N-1 downto 0);
   signal S1      : std_logic_vector(N-1 downto 0);
 
+  signal finished : std_logic := '0';
+
 begin
 
   
@@ -50,7 +52,7 @@ begin
       S1 => S1
     );
 
-    clk <= not clk after 10 ns;
+  clk <= not clk after 10 ns when finished /= '1' else '0';
 
   estimulos: process
   begin
@@ -149,6 +151,91 @@ begin
       severity error;
 
 
+    --------------------------------------------------------------------
+    -- 5) AND: 10101010 AND 11110000 = 10100000
+    --------------------------------------------------------------------
+    entA <= "10101010";
+    entB <= "11110000";
+
+    ULAOp <= "10";
+    funct <= "100100"; -- AND
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = "10100000"
+      report "AND falhou: esperado 10100000"
+
+      severity error;
+    --------------------------------------------------------------------
+    -- 6) OR: 10101010 OR 11000011 = 11101011
+    --------------------------------------------------------------------
+    entA <= "10101010";
+    entB <= "11000011";
+
+    ULAOp <= "10";
+    funct <= "100101"; -- OR
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = "11101011"
+      report "OR falhou: esperado 11101011" 
+      severity error;
+
+    --------------------------------------------------------------------
+    -- 7) SLT (signed): 5 < 9 → 1
+    --------------------------------------------------------------------
+    entA <= std_logic_vector(to_signed(5, N));
+    entB <= std_logic_vector(to_signed(9, N));
+
+    ULAOp <= "10";
+    funct <= "101010"; -- SLT
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = std_logic_vector(to_unsigned(1, N))
+      report "SLT falhou (caso A<B): esperado 1"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- 7b) SLT (signed): 10 < -3 → falso → 0
+    --------------------------------------------------------------------
+    entA <= std_logic_vector(to_signed(10, N));
+    entB <= std_logic_vector(to_signed(-3, N));
+
+    ULAOp <= "10";
+    funct <= "101010"; -- SLT
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = std_logic_vector(to_unsigned(0, N))
+      report "SLT falhou (caso A>B): esperado 0"
+      severity error;
+
+    wait until pronto='0';
+    wait for 10 ns;
+
+    assert false report "Test done." severity note;
+        finished <= '1';
     wait;
   end process;
 

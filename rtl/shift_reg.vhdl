@@ -25,38 +25,44 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+-- Registrador parametrizável para N bits com controle de enable.
+-- O registrador atualiza sua saída `q` com o valor da entrada `d` na borda de
+-- subida do sinal `clk`, apenas quando `enable = '1'`.
 entity shift_reg is
   generic (
     N : positive := 4 -- número de bits armazenados
   );
   port (
     clk, enable, sr, bit_in : in std_logic; -- clock (clk), carga (enable), shift right, bit de entrada quando o shift right estiver ativo
-    d           : in std_logic_vector(N - 1 downto 0); -- dado de entrada
+    d           : in std_logic_vector(N - 1 downto 0) := (others => '0'); -- dado de entrada
     q           : out std_logic_vector(N - 1 downto 0) := (others => '0'); -- dado armazenado
-    bit_out     : out std_logic -- bit de saída quando shift right estiver ativo
+    bit_out : out std_logic := '0' -- bit de saída quando shift right estiver ativo
   );
 end shift_reg;
 
 architecture behavior of shift_reg is
-    signal q_int : std_logic_vector(N-1 downto 0) := (others => '0');
+
 begin
-    q <= q_int;
-
     process (clk)
+        variable b_out_var, b_in_var : std_logic;
+        variable to_shift : std_logic_vector(N - 3 downto 0);
     begin
-        if rising_edge(clk) then
-            -- default para bit_out quando não há shift
-            bit_out <= '0';
-
-            if enable = '1' then
-                -- carga paralela
-                q_int <= d;
-            elsif sr = '1' then
-                -- shift right: novo MSB recebe bit_in, LSB sai em bit_out
-                bit_out <= q_int(0);
-                -- concatena bit_in com os bits superiores para deslocar à direita
-                q_int <= bit_in & q_int(N-1 downto 1);
+        if (rising_edge(clk)) then
+            if enable = '1' then  -- Se enable = '1', o valor de d deve ser atribuído a q.
+                q <= d;
+            elsif sr = '1' then   -- o shift right ocorre APENAS quando o enable for 0
+                b_out_var := q(0);
+                b_in_var := bit_in;
+                to_shift := q(N - 2 downto 1); -- mantém o bit do sinal
+                q(N - 3 downto 0) <= to_shift;
+                q(N - 2) <= b_in_var;
+                bit_out <= b_out_var;
             end if;
         end if;
     end process;
+
 end architecture behavior;

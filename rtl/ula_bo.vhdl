@@ -21,8 +21,8 @@ end entity ula_bo;
 architecture structure of ula_bo is
   signal A, B : std_logic_vector(N - 1 downto 0);
   --madu signal's
-  signal c0, c1, c2, OV_xor_N : std_logic;
-  signal result_add_sub, result_and_or, result_mux1, ent1_mux2, result_mux2 : std_logic_vector(N - 1 downto 0);
+  signal c0, c1, c2 : std_logic;
+  signal result_and_or, result_mux1, ent1_mux2, result_mux2 : std_logic_vector(N - 1 downto 0);
   --renato signal´s
   signal result_mux6, result_mux7, count_r, result_mux8, result_count_r_less : std_logic_vector(N - 1 downto 0);
   signal ULAop : std_logic_vector (1 downto 0);
@@ -33,6 +33,9 @@ architecture structure of ula_bo is
   signal PL   : std_logic_vector(N-1 downto 0) := (others => '0');
   
   signal result_muxFF, count_soma_P, out_FF : std_logic;
+
+  signal result_add_sub : std_logic_vector(N - 1 downto 0) := (others => '0');
+  signal OV_xor_N : std_logic := '0';
 
 
 
@@ -135,7 +138,8 @@ begin
 
   -- mux2 (e entrada 1 de mux2)
   OV_xor_N <= out_status.OV xor result_add_sub(result_add_sub'high);
-  ent1_mux2 <= (others => OV_xor_N);
+
+  ent1_mux2 <= (0 => OV_xor_N, others => '0');
 
   mux_2 : entity work.mux_2to1(behavior)
     generic map(
@@ -172,7 +176,7 @@ begin
     (
       sel   => in_comandos.mcount,
       in_0  => result_count_r_less,
-      in_1  => std_logic_vector(to_unsigned(N, N)),
+      in_1  => result_mux6,
       s_mux => result_mux7);
 
   reg_count_r : entity work.std_logic_register(behavior)
@@ -209,7 +213,7 @@ begin
     carry_out => open,
     overflow => open);
 
-  count_less_than_B: entity work.count_less_than_B(behavior)
+  count_lessth_B: entity work.count_less_than_B(behavior)
   generic map(
       N => N)
     port map

@@ -68,7 +68,7 @@ begin
 
         bit_in <= '0';
         wait for passo*2;
-        assert(q="00100000000000000000000000000010" and bit_out='0') -- esse teste automático ta errado mas no gtkwave tá certo :)
+        assert(q="00110000000000000000000000000010" and bit_out='0') 
         report "Fail 4" severity error;
 
         wait for passo*2;
