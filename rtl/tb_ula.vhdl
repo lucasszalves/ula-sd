@@ -74,7 +74,6 @@ begin
 
     wait until pronto='1';
     
-
     assert S0 = std_logic_vector(to_unsigned(8, N))
       report "ADD falhou: esperado 8, obtido " & integer'image(to_integer(unsigned(S0)))
       severity error;

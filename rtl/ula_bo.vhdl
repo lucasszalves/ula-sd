@@ -27,12 +27,16 @@ architecture structure of ula_bo is
   signal result_mux6, result_mux7, count_r, result_mux8, result_count_r_less : std_logic_vector(N - 1 downto 0);
   signal ULAop : std_logic_vector (1 downto 0);
   signal funct : std_logic_vector (5 downto 0);
-  signal result_mux3, result_mux4, result_mux5, result_mux9, result_mux10, result_soma_P, PH_Q, PL, one, zero : std_logic_vector(N - 1 downto 0);
+  signal result_mux3, result_mux4, result_mux5, result_mux9, result_mux10, result_soma_P, one, zero : std_logic_vector(N - 1 downto 0);
+
+  signal PH_Q : std_logic_vector(N-1 downto 0) := (others => '0');
+  signal PL   : std_logic_vector(N-1 downto 0) := (others => '0');
+  
   signal result_muxFF, count_soma_P, out_FF : std_logic;
 
 
 
-  signal bit_in_PL : std_logic;
+  signal bit_in_PL : std_logic := '0';
 begin
 
 -------------------------PARTE DA MADU FINALIZADA---------------------------

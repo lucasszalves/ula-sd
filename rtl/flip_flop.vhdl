@@ -5,15 +5,14 @@ entity flip_flop is
     port (
         clk   : in  std_logic;
         d     : in  std_logic; -- Entrada de dados
-        q     : out std_logic  -- Saída
+        q     : out std_logic := '0'  -- Saída
     );
 end entity flip_flop;
 
 architecture behavior of flip_flop is
-    signal rst : std_logic := '0';  -- inicializa se necessário
 begin
 
-    process(clk, rst)
+    process(clk)
     begin
         if rising_edge(clk) then
             q <= d; -- A saída copia a entrada
