@@ -3,15 +3,14 @@
 --	Created:     	November 16, 2025
 --
 --	Project:     	Atividade Prática 3
---	Description: 	ADD DESCRIPTION
+--	Description: 	Bloco de Controle (BC) da ULA.
+--                  Responsável por gerar os sinais de controle para o bloco operativo (BO)
+--                  por meio de uma FSM.
 --------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use work.ula_pack.all;
 
--- Bloco de Controle (BC) da ULA.
--- Responsável por gerar os sinais de controle para o bloco operativo (BO),
--- por meio de uma FSM.
 entity ula_bc is
   port (
     clk          : in std_logic; -- clock (sinal de relógio)
