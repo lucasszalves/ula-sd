@@ -29,7 +29,7 @@ architecture structure of ula_bo is
   signal A, B : std_logic_vector(N - 1 downto 0);
   --madu signal's
   signal c0, c1, c2 : std_logic;
-  signal c_internal : std_logic_vector(2 downto 0;)
+  signal c_internal : std_logic_vector(2 downto 0);
   signal result_and_or, result_mux1, ent1_mux2, result_mux2 : std_logic_vector(N - 1 downto 0);
   --renato signal´s
   signal result_mux6, result_mux7, count_r, result_mux8, result_count_r_less : std_logic_vector(N - 1 downto 0);
@@ -46,7 +46,7 @@ architecture structure of ula_bo is
   signal OV_xor_N : std_logic := '0';
 
 
-  constant one : std_logic_vector(N - 1 downto 0) := std_logic_vector(to_unsigned(1, N - 1 downto 0));
+  constant one : std_logic_vector(N - 1 downto 0) := std_logic_vector(to_unsigned(1, N));
   constant zero : std_logic_vector(N - 1 downto 0) := (others => '0');
   signal bit_in_PL : std_logic := '0';
 begin
