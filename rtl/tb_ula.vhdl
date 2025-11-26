@@ -100,9 +100,89 @@ begin
     assert S0 = std_logic_vector(to_unsigned(7, N))
       report "SUB falhou: esperado 7, obtido " & integer'image(to_integer(unsigned(S0)))
       severity error;
+    
+    --------------------------------------------------------------------
+    -- 3) AND: 10101010 AND 11110000 = 10100000
+    --------------------------------------------------------------------
+    entA <= "10101010";
+    entB <= "11110000";
+
+    ULAOp <= "10";
+    funct <= "100100"; -- AND
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = "10100000"
+      report "AND falhou: esperado 10100000"
+
+      severity error;
+    --------------------------------------------------------------------
+    -- 4) OR: 10101010 OR 11000011 = 11101011
+    --------------------------------------------------------------------
+    entA <= "10101010";
+    entB <= "11000011";
+
+    ULAOp <= "10";
+    funct <= "100101"; -- OR
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = "11101011"
+      report "OR falhou: esperado 11101011" 
+      severity error;
 
     --------------------------------------------------------------------
-    -- 3) MULT: 6 × 3 = 18  → S1:S0 = 16-bit result (para N=8)
+    -- 5) SLT (signed): 5 < 9 → 1
+    --------------------------------------------------------------------
+    entA <= std_logic_vector(to_signed(5, N));
+    entB <= std_logic_vector(to_signed(9, N));
+
+    ULAOp <= "10";
+    funct <= "101010"; -- SLT
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = std_logic_vector(to_unsigned(1, N))
+      report "SLT falhou (caso A<B): esperado 1"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- 5b) SLT (signed): 10 < -3 → falso → 0
+    --------------------------------------------------------------------
+    entA <= std_logic_vector(to_signed(10, N));
+    entB <= std_logic_vector(to_signed(-3, N));
+
+    ULAOp <= "10";
+    funct <= "101010"; -- SLT
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = std_logic_vector(to_unsigned(0, N))
+      report "SLT falhou (caso A>B): esperado 0"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- 6) MULT: 6 × 3 = 18  → S1:S0 = 16-bit result (para N=8)
     --------------------------------------------------------------------
 
     entA <= std_logic_vector(to_signed(6, entA'length));
@@ -128,7 +208,7 @@ begin
       severity error;
 
     --------------------------------------------------------------------
-    -- 4) DIV: 4 / 8 = quociente 0, resto 4
+    -- 7) DIV: 4 / 8 = quociente 0, resto 4
     --------------------------------------------------------------------
     entA <= std_logic_vector(to_signed(4, entA'length));
     entB <= std_logic_vector(to_signed(8, entB'length));
@@ -151,85 +231,7 @@ begin
       severity error;
 
 
-    --------------------------------------------------------------------
-    -- 5) AND: 10101010 AND 11110000 = 10100000
-    --------------------------------------------------------------------
-    entA <= "10101010";
-    entB <= "11110000";
-
-    ULAOp <= "10";
-    funct <= "100100"; -- AND
-
-    wait until pronto='0';
-    wait for 10 ns;
-    iniciar <= '1'; wait for 10 ns;
-    iniciar <= '0';
-
-    wait until pronto='1';
-
-    assert S0 = "10100000"
-      report "AND falhou: esperado 10100000"
-
-      severity error;
-    --------------------------------------------------------------------
-    -- 6) OR: 10101010 OR 11000011 = 11101011
-    --------------------------------------------------------------------
-    entA <= "10101010";
-    entB <= "11000011";
-
-    ULAOp <= "10";
-    funct <= "100101"; -- OR
-
-    wait until pronto='0';
-    wait for 10 ns;
-    iniciar <= '1'; wait for 10 ns;
-    iniciar <= '0';
-
-    wait until pronto='1';
-
-    assert S0 = "11101011"
-      report "OR falhou: esperado 11101011" 
-      severity error;
-
-    --------------------------------------------------------------------
-    -- 7) SLT (signed): 5 < 9 → 1
-    --------------------------------------------------------------------
-    entA <= std_logic_vector(to_signed(5, N));
-    entB <= std_logic_vector(to_signed(9, N));
-
-    ULAOp <= "10";
-    funct <= "101010"; -- SLT
-
-    wait until pronto='0';
-    wait for 10 ns;
-    iniciar <= '1'; wait for 10 ns;
-    iniciar <= '0';
-
-    wait until pronto='1';
-
-    assert S0 = std_logic_vector(to_unsigned(1, N))
-      report "SLT falhou (caso A<B): esperado 1"
-      severity error;
-
-    --------------------------------------------------------------------
-    -- 7b) SLT (signed): 10 < -3 → falso → 0
-    --------------------------------------------------------------------
-    entA <= std_logic_vector(to_signed(10, N));
-    entB <= std_logic_vector(to_signed(-3, N));
-
-    ULAOp <= "10";
-    funct <= "101010"; -- SLT
-
-    wait until pronto='0';
-    wait for 10 ns;
-    iniciar <= '1'; wait for 10 ns;
-    iniciar <= '0';
-
-    wait until pronto='1';
-
-    assert S0 = std_logic_vector(to_unsigned(0, N))
-      report "SLT falhou (caso A>B): esperado 0"
-      severity error;
+    
 
     wait until pronto='0';
     wait for 10 ns;
