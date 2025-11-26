@@ -117,6 +117,14 @@ begin
 
     wait until pronto='1';
 
+    -- resultado 18 decimal
+    assert S0 = std_logic_vector(to_unsigned(18 mod 256, N))
+      report "MULT S0 errado: esperado " & integer'image(18)
+      severity error;
+
+    assert S1 = std_logic_vector(to_unsigned(18 / 256, N))
+      report "MULT S1 errado (parte alta)"
+      severity error;
 
     --------------------------------------------------------------------
     -- 4) DIV: 4 / 8 = quociente 0, resto 4
@@ -133,6 +141,13 @@ begin
 
     wait until pronto='1';
 
+    assert S0 = std_logic_vector(to_unsigned(0, N))
+      report "DIV quociente errado"
+      severity error;
+
+    assert S1 = std_logic_vector(to_unsigned(4, N))
+      report "DIV resto errado"
+      severity error;
 
 
     wait;
