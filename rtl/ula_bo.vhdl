@@ -60,9 +60,10 @@ begin
       q      => ULAOp);
 
   -- lógica para gerar C
-  c0 <= ULAOp(0) or (ULAOp(1) and funct(1));
+  c0 <= ULAOp(1) and (funct(0) or funct(3));
   c1 <= not(ULAOp(1)) or not(funct(2));
-  c2 <= ULAOp(1) and (funct(3) or funct(0));
+  c2 <= ULAOp(0) or funct(1);
+
   out_status.c <= c2 & (c1 & c0);
 
   -- registrador para passar A
