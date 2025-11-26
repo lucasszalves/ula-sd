@@ -102,7 +102,13 @@ begin
                     c_internal <= "011";
                 when "100110" => 
                     c_internal <= "100";
+
+
+                when others =>
+                    c_internal <= "010";
             end case;
+          when others =>
+            c_internal <= "010";
     end case;
   end process proc_c;
             
