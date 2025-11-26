@@ -23,8 +23,8 @@ entity std_logic_register is
   );
   port (
     clk, enable : in std_logic; -- clock (clk) e carga (enable)
-    d           : in std_logic_vector(N - 1 downto 0); -- dado de entrada
-    q           : out std_logic_vector(N - 1 downto 0) -- dado armazenado
+    d           : in std_logic_vector(N - 1 downto 0) := (others => '0'); -- dado de entrada
+    q           : out std_logic_vector(N - 1 downto 0) := (others => '0') -- dado armazenado
   );
 end std_logic_register;
 
