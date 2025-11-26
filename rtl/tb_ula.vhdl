@@ -108,8 +108,8 @@ begin
     entA <= std_logic_vector(to_signed(6, entA'length));
     entB <= std_logic_vector(to_signed(3, entB'length));
 
-    ULAOp <= "10";     -- ativa FSM
-    funct <= "101001"; -- ignorado
+    ULAOp <= "10";     
+    funct <= "101011"; -- MULT
 
     wait until pronto='0';
     wait for 10 ns;
@@ -133,7 +133,7 @@ begin
     entA <= std_logic_vector(to_signed(4, entA'length));
     entB <= std_logic_vector(to_signed(8, entB'length));
     ULAOp <= "10";
-    funct <= "001100";
+    funct <= "100110";
 
     wait until pronto='0';
     wait for 10 ns;

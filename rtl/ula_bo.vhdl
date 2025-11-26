@@ -74,23 +74,41 @@ begin
       enable => in_comandos.cULAOp,
       d      => in_operativo.entULAOp,
       q      => ULAOp);
-  -- TODO !!!!!!!! 
+
+
   -- lógica para gerar C
-  
+    -- TODO !!!!!!!! 
+
   proc_c : process(ULAOp, funct)
   begin
-        if (ULAOp = "00") then
-            c0 <= '0';
-            c1 <= '1';
-            c2 <= '0';
-        elsif (ULAOp = "01") then
-            
-        end if;
+    case ULAOp is
+        when "00" =>
+            c_internal <= "010";
+        when "01" =>
+            c_internal <= "110";
+        when "10" =>
+            case funct is
+                when "100000" => 
+                    c_internal <= "010";
+                when "100010" => 
+                    c_internal <= "110";
+                when "100100" => 
+                    c_internal <= "000";
+                when "100101" => 
+                    c_internal <= "001";
+                when "101010" => 
+                    c_internal <= "111";
+                when "101011" => 
+                    c_internal <= "011";
+                when "100110" => 
+                    c_internal <= "100";
+            end case;
+    end case;
   end process proc_c;
             
-  c0 <= ULAOp(1) and (funct(0) or funct(3));
-  c1 <= not(ULAOp(1)) or not(funct(2));
-  c2 <= ULAOp(0) or funct(1);
+  c0 <= c_internal(0);
+  c1 <= c_internal(1);
+  c2 <= c_internal(2);
   out_status.c <= c_internal;
 
   -- registrador para passar A
