@@ -1,11 +1,18 @@
+--------------------------------------------------
+--	Author:		Stella Silva Weege, Renato Noskoski Kissel, Maria Eduarda de Oliveira Zuquetto
+--	Created:     	November 16, 2025
+--
+--	Project:     	Atividade Prática 3
+--	Description: 	Bloco Operativo (BO) da ULA.
+--                  Responsável por fazer o processamento dos dados, cálculos e
+--                  gerar os sinais de status para o Bloco de Controle (BC)
+--------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use work.ula_pack.all;
 use ieee.numeric_std.all;
 
--- Bloco Operacional (BO) da ULA.
--- Responsável por *COMPLETAR*,
--- por meio de *COMPLETAR*.
 entity ula_bo is
   generic (
     N : positive := 32
@@ -125,7 +132,7 @@ begin
       CAO      => c0,
       result   => result_and_or);
 
-  -- mux1
+  -- mux1 (seleciona o resultado do and/or ou da soma/subtração)
   mux_1 : entity work.mux_2to1(behavior)
     generic map(
       N => N)
@@ -136,11 +143,12 @@ begin
       in_1  => result_add_sub,
       s_mux => result_mux1);
 
-  -- mux2 (e entrada 1 de mux2)
+  -- entrada 1 de mux2
   OV_xor_N <= out_status.OV xor result_add_sub(result_add_sub'high);
 
   ent1_mux2 <= (0 => OV_xor_N, others => '0');
 
+  -- mux2 (seleciona o resultado do SLT ou da soma/subtração/and/or)
   mux_2 : entity work.mux_2to1(behavior)
     generic map(
       N => N)
@@ -159,6 +167,7 @@ begin
   out_status.A_0 <= A(0);
   out_status.Az <= '1' when unsigned(A) = 0 else '0';
 
+  -- mux6 (seleciona o contador da multiplicação ou o A, que deverá subtrair na divisão)
   mux_6 : entity work.mux_2to1(behavior)
     generic map(
       N => N)
@@ -169,6 +178,7 @@ begin
       in_1  => std_logic_vector(to_unsigned(N, N)),
       s_mux => result_mux6);
 
+  -- mux7 (seleciona o resultado da última subtração da divisão ou a saída de mux6)
   mux_7 : entity work.mux_2to1(behavior)
     generic map(
       N => N)
@@ -179,6 +189,7 @@ begin
       in_1  => result_mux6,
       s_mux => result_mux7);
 
+  -- registrador que guarda a saída do mux7
   reg_count_r : entity work.std_logic_register(behavior)
     generic map(
       N => N)
@@ -199,7 +210,7 @@ begin
     (
       sel   => c0,
       in_0  => B,
-      in_1 => (0 => '1', others => '0'),
+      in_1 => one,
       s_mux => result_mux8);
 
   sub: entity work.subtractor(behavior)
