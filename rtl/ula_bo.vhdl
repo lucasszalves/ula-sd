@@ -29,6 +29,7 @@ architecture structure of ula_bo is
   signal A, B : std_logic_vector(N - 1 downto 0);
   --madu signal's
   signal c0, c1, c2 : std_logic;
+  signal c_internal : std_logic_vector(2 downto 0;)
   signal result_and_or, result_mux1, ent1_mux2, result_mux2 : std_logic_vector(N - 1 downto 0);
   --renato signal´s
   signal result_mux6, result_mux7, count_r, result_mux8, result_count_r_less : std_logic_vector(N - 1 downto 0);
@@ -73,13 +74,24 @@ begin
       enable => in_comandos.cULAOp,
       d      => in_operativo.entULAOp,
       q      => ULAOp);
-
+  -- TODO !!!!!!!! 
   -- lógica para gerar C
+  
+  proc_c : process(ULAOp, funct)
+  begin
+        if (ULAOp = "00") then
+            c0 <= '0';
+            c1 <= '1';
+            c2 <= '0';
+        elsif (ULAOp = "01") then
+            
+        end if;
+  end process proc_c;
+            
   c0 <= ULAOp(1) and (funct(0) or funct(3));
   c1 <= not(ULAOp(1)) or not(funct(2));
   c2 <= ULAOp(0) or funct(1);
-
-  out_status.c <= c2 & (c1 & c0);
+  out_status.c <= c_internal;
 
   -- registrador para passar A
   reg_A : entity work.shift_reg(behavior)
