@@ -11,7 +11,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity tb_ula is
-end entity;
+end tb_ula;
 
 architecture sim of tb_ula is
 

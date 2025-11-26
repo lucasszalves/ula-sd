@@ -34,18 +34,19 @@ architecture structure of ula_bo is
   signal result_mux6, result_mux7, count_r, result_mux8, result_count_r_less : std_logic_vector(N - 1 downto 0);
   signal ULAop : std_logic_vector (1 downto 0);
   signal funct : std_logic_vector (5 downto 0);
-  signal result_mux3, result_mux4, result_mux5, result_mux9, result_mux10, result_soma_P, one, zero : std_logic_vector(N - 1 downto 0);
+  signal result_mux3, result_mux4, result_mux5, result_mux9, result_mux10, result_soma_P : std_logic_vector(N - 1 downto 0);
 
   signal PH_Q : std_logic_vector(N-1 downto 0) := (others => '0');
   signal PL   : std_logic_vector(N-1 downto 0) := (others => '0');
   
-  signal result_muxFF, count_soma_P, out_FF : std_logic;
+  signal result_muxFF, cout_soma_P, out_FF : std_logic;
 
   signal result_add_sub : std_logic_vector(N - 1 downto 0) := (others => '0');
   signal OV_xor_N : std_logic := '0';
 
 
-
+  constant one : std_logic_vector(N - 1 downto 0) := std_logic_vector(to_unsigned(1, N - 1 downto 0));
+  constant zero : std_logic_vector(N - 1 downto 0) := (others => '0');
   signal bit_in_PL : std_logic := '0';
 begin
 
@@ -165,7 +166,7 @@ begin
 
   --signals A(0) e A==0?
   out_status.A_0 <= A(0);
-  out_status.Az <= '1' when unsigned(A) = 0 else '0';
+  out_status.Az <= '1' when A = zero else '0';
 
   -- mux6 (seleciona o contador da multiplicação ou o A, que deverá subtrair na divisão)
   mux_6 : entity work.mux_2to1(behavior)
@@ -200,9 +201,10 @@ begin
       d      => result_mux7,
       q      => count_r);
 
-  --signal count == 0?
+  --signal count_r == 0?
   out_status.countz <= '1' when unsigned(count_r) = 0 else '0';
 
+  -- mux8 (seleciona entre B (para a divisão) e 1 (para o contador da multiplicação))
   mux_8 : entity work.mux_2to1(behavior)
     generic map(
       N => N)
@@ -213,6 +215,7 @@ begin
       in_1 => one,
       s_mux => result_mux8);
 
+  -- bloco subtrator exclusivo
   sub: entity work.subtractor(behavior)
   generic map(
       N => N)
@@ -224,6 +227,7 @@ begin
     carry_out => open,
     overflow => open);
 
+  -- bloco que verifica se A < B (na prática, utiliza um subtrator e verifica se a subtração foi menor que zero ou deu overflow)
   count_lessth_B: entity work.count_less_than_B(behavior)
   generic map(
       N => N)
@@ -236,129 +240,138 @@ begin
 
     -------------------------PARTE DO MEIO FINALIZADA---------------------------
 
-one  <= std_logic_vector(resize(to_unsigned(1, 1), N));
-zero <= (others => '0');
+    out_status.Bz <= '1' when B = zero else '0';
 
-out_status.Bz <= '1' when unsigned(B) = 0 else '0';
+    -- mux3 (seleciona entre 1 (contador do quociente da divisão) e o B (somado na multiplicação))
+    mux_3 : entity work.mux_2to1(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        sel   => c0,
+        in_0  => one,
+        in_1 => B,
+        s_mux => result_mux3);
 
-mux_3 : entity work.mux_2to1(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      sel   => c0,
-      in_0  => (0 => '1', others => '0'),
-      in_1 => B,
-      s_mux => result_mux3);
+    --mux4 (seleciona entre o resultado do somador e zero)
+    mux_4 : entity work.mux_2to1(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        sel   => in_comandos.mPH_Q,
+        in_0  => result_soma_P,
+        in_1 => zero,
+        s_mux => result_mux4);
 
-mux_4 : entity work.mux_2to1(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      sel   => in_comandos.mPH_Q,
-      in_0  => result_soma_P,
-      in_1 => (others => '0'),
-      s_mux => result_mux4);
+    -- mux5 (seleciona a parte baixa da multiplicação ou o quociente da divisão)
+    mux_5 : entity work.mux_2to1(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        sel   => c2,
+        in_0  => PL,
+        in_1 => PH_Q,
+        s_mux => result_mux5);
 
-mux_5 : entity work.mux_2to1(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      sel   => c2,
-      in_0  => PL,
-      in_1 => PH_Q,
-      s_mux => result_mux5);
+    -- mux9 (seleciona a parte alta da multiplicação ou o resto da divisão)
+    mux_9 : entity work.mux_2to1(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        sel   => c0,
+        in_0  => count_r,
+        in_1 => PH_Q,
+        s_mux => result_mux9);
 
-mux_9 : entity work.mux_2to1(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      sel   => c0,
-      in_0  => count_r,
-      in_1 => PH_Q,
-      s_mux => result_mux9);
+    -- mux10 (seleciona a saída do mux5 (para operações de mult ou div) ou a saída do mux2 (add/sub/and/or/stl))
+    mux_10 : entity work.mux_2to1(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        sel   => in_comandos.m10,
+        in_0  => result_mux5,
+        in_1 => result_mux2,
+        s_mux => result_mux10);
+    
+    -- muxFF (seleciona o carry out da soma, no caso da multiplicação, se ocorrer, e apenas no estado necessário (MULT4))
+    mux_FF : entity work.mux_1bit(rtl)
+    port map(
+        sel   => in_comandos.mFF,
+        in_0  => cout_soma_P,
+        in_1  => '0',
+        s_mux => result_muxFF
+    );
 
-mux_10 : entity work.mux_2to1(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      sel   => in_comandos.m10,
-      in_0  => result_mux5,
-      in_1 => result_mux2,
-      s_mux => result_mux10);
+    -- bloco somador exclusivo (soma a parte alta da multiplicação com B ou incrementa o contador do quociente)
+    somador_P : entity work.adder(behavior)
+        generic map (
+                N => N)
+        port map (
+            input_a => result_mux3,
+            input_b => PH_Q,
+            result => result_soma_P,
+            carry_out => cout_soma_P,
+            overflow  => open);
 
-mux_FF : entity work.mux_1bit(rtl)
-  port map(
-    sel   => in_comandos.mFF,
-    in_0  => count_soma_P,
-    in_1  => '0',
-    s_mux => result_muxFF
-  );
+    -- flip flop que guarda a saída do muxFF
+    flip_flop_FF : entity work.flip_flop(behavior)
+        port map(
+                clk => clk,
+                d => result_muxFF,
+                q => out_FF);
 
-somador_P : entity work.adder(behavior)
-	generic map (
-    		N => N)
-	port map (
-	    input_a => result_mux3,
-	    input_b => PH_Q,
-	    result => result_soma_P,
-	    carry_out => count_soma_P,
-	    overflow  => open);
+    -- registrador que guarda a saída do mux4, que pode ser a parte alta da multiplicação (PH) ou o quociente da divisão (Q)
+    reg_PH_Q : entity work.shift_reg(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        clk    => clk,
+        sr => in_comandos.srPH_Q,
+        bit_in => out_FF, 
+        enable => in_comandos.cPH_Q, 
+        d      => result_mux4,
+        q      => PH_Q,
+        bit_out => bit_in_PL);
 
-flip_flop_FF : entity work.flip_flop(behavior)
-	port map(
-            clk => clk,
-            d => result_muxFF,
-            q => out_FF);
+    -- registrador que guarda a parte baixa da multiplicação
+    reg_PL : entity work.shift_reg(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        clk    => clk,
+        sr => in_comandos.srPL,
+        bit_in => bit_in_PL, 
+        enable => in_comandos.cPL, 
+        d      => zero,
+        q      => PL,
+        bit_out => open);
 
-reg_PH_Q : entity work.shift_reg(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      clk    => clk,
-      sr => in_comandos.srPH_Q,
-      bit_in => out_FF, 
-      enable => in_comandos.cPH_Q, 
-      d      => result_mux4,
-      q      => PH_Q,
-      bit_out => bit_in_PL);
+    -- registrador que guarda o a saída do mux10
+    reg_S0 : entity work.std_logic_register(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        clk    => clk,
+        enable => in_comandos.cS0,
+        d      => result_mux10,
+        q      => out_operativo.S0);
 
-reg_PL : entity work.shift_reg(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      clk    => clk,
-      sr => in_comandos.srPL,
-      bit_in => bit_in_PL, 
-      enable => in_comandos.cPL, 
-      d      => zero,
-      q      => PL,
-      bit_out => open);
-
-reg_S0 : entity work.std_logic_register(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      clk    => clk,
-      enable => in_comandos.cS0,
-      d      => result_mux10,
-      q      => out_operativo.S0);
-
-reg_S1 : entity work.std_logic_register(behavior)
-    generic map(
-      N => N)
-    port map
-    (
-      clk    => clk,
-      enable => in_comandos.cS1,
-      d      => result_mux9,
-      q      => out_operativo.S1);
+    -- registrador que guarda o a saída do mux9
+    reg_S1 : entity work.std_logic_register(behavior)
+        generic map(
+        N => N)
+        port map
+        (
+        clk    => clk,
+        enable => in_comandos.cS1,
+        d      => result_mux9,
+        q      => out_operativo.S1);
 
 end architecture structure;

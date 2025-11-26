@@ -11,7 +11,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity tb_count_ltb is
-end entity;
+end tb_count_ltb;
 
 architecture sim of tb_count_ltb is
 
@@ -75,6 +75,37 @@ begin
     assert result = '0'
       report "Falha: 5 < 5, esperado 0"
       severity error;
+
+    --------------------------------------------------------------------
+    -- Caso 5: negativo mínimo < 1 → result = 1 (por conta do overflow!)
+    --------------------------------------------------------------------
+    input_a <= "10000000"; -- valor negativo mínimo
+    input_b <= "00000001";
+    wait for 10 ns;
+    assert result = '1'
+      report "Falha: negativo mínimo < 1, esperado 1"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- Caso 6: negativo qualquer < 1 → result = 1
+    --------------------------------------------------------------------
+    input_a <= "11000000"; -- valor negativo
+    input_b <= "00000001";
+    wait for 10 ns;
+    assert result = '1'
+      report "Falha: negativo < 1, esperado 1"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- Caso 7: negativo qualquer < 1 → result = 1
+    --------------------------------------------------------------------
+    input_a <= "11111000"; -- valor negativo
+    input_b <= "00000001";
+    wait for 10 ns;
+    assert result = '1'
+      report "Falha: negativo < 1, esperado 1"
+      severity error;
+
 
     --------------------------------------------------------------------
     -- Finaliza simulação
