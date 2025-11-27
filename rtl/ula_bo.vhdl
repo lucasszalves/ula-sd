@@ -77,8 +77,6 @@ begin
 
 
   -- lógica para gerar C
-    -- TODO !!!!!!!! 
-
   proc_c : process(ULAOp, funct)
   begin
     case ULAOp is
@@ -102,8 +100,6 @@ begin
                     c_internal <= "011";
                 when "100110" => 
                     c_internal <= "100";
-
-
                 when others =>
                     c_internal <= "010";
             end case;

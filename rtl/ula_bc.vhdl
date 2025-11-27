@@ -54,14 +54,14 @@ begin
           next_state <= AD;
         elsif in_status.C = "011" then
           next_state <= MULT1;
+        elsif ((in_status.C = "100" and (in_status.Amz = '1' or in_status.Bmz = '1' or in_status.Bz = '1')) or (in_status.C = "011" and (in_status.Amz = '1' or in_status.Bmz = '1'))) then
+            next_state <= ERRO;
         elsif in_status.C = "100" then
           next_state <= DIV1;
         elsif in_status.C = "110" then
           next_state <= SUB;
         elsif in_status.C = "111" then
-          next_state <= SLT;
-        elsif ((in_status.C = "100" and (in_status.Amz = '1' or in_status.Bmz = '1' or in_status.Bz = '1')) or (in_status.C = "011" and (in_status.Amz = '1' or in_status.Bmz = '1'))) then
-          next_state <= ERRO;
+            next_state <= SLT;
         end if;
       when SLT =>
         next_state <= PRONTO;
@@ -333,7 +333,7 @@ begin
         out_comandos.cPH_Q  <= '1';
         out_comandos.srPL   <= '0';
         out_comandos.cPL    <= '0';
-        out_comandos.mFF    <= '0';
+        out_comandos.mFF    <= '1';
         out_comandos.m10    <= '0';
         out_comandos.cS0    <= '0';
         out_comandos.cS1    <= '0';
@@ -421,7 +421,7 @@ begin
         out_comandos.cB     <= '0';
         out_comandos.cA     <= '0';
         out_comandos.sr_A   <= '0';
-        out_comandos.mcount <= '1';
+        out_comandos.mcount <= '0';
         out_comandos.ccount <= '1';
         out_comandos.mPH_Q  <= '0';
         out_comandos.srPH_Q <= '0';
@@ -486,7 +486,7 @@ begin
         out_comandos.srPL   <= '0';
         out_comandos.cPL    <= '0';
         out_comandos.mFF    <= '0';
-        out_comandos.m10    <= '1';
+        out_comandos.m10    <= '0';
         out_comandos.cS0    <= '0';
         out_comandos.cS1    <= '0';
         out_comandos.cULAop <= '0';
