@@ -372,7 +372,7 @@ begin
         out_comandos.srPH_Q <= '1';
         out_comandos.cPH_Q  <= '0';
         out_comandos.srPL   <= '1';
-        out_comandos.cPL    <= '1';
+        out_comandos.cPL    <= '0';
         out_comandos.mFF    <= '0';
         out_comandos.m10    <= '0';
         out_comandos.cS0    <= '0';
