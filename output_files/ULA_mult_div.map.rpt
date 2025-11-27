@@ -1,0 +1,999 @@
+Analysis & Synthesis report for ULA_mult_div
+Thu Nov 27 20:46:59 2025
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |ula|ula_bc:BC|current_state
+  9. User-Specified and Inferred Latches
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: Top-level Entity: |ula
+ 13. Parameter Settings for User Entity Instance: ula_bo:BO
+ 14. Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_funct
+ 15. Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_ULAOp
+ 16. Parameter Settings for User Entity Instance: ula_bo:BO|shift_reg:reg_A
+ 17. Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_B
+ 18. Parameter Settings for User Entity Instance: ula_bo:BO|adder_subtractor:add_sub
+ 19. Parameter Settings for User Entity Instance: ula_bo:BO|and_or:and_or
+ 20. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_1
+ 21. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_2
+ 22. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_6
+ 23. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_7
+ 24. Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_count_r
+ 25. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_8
+ 26. Parameter Settings for User Entity Instance: ula_bo:BO|subtractor:sub
+ 27. Parameter Settings for User Entity Instance: ula_bo:BO|count_less_than_B:count_lessth_B
+ 28. Parameter Settings for User Entity Instance: ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor
+ 29. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_3
+ 30. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_4
+ 31. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_5
+ 32. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_9
+ 33. Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_10
+ 34. Parameter Settings for User Entity Instance: ula_bo:BO|adder:somador_P
+ 35. Parameter Settings for User Entity Instance: ula_bo:BO|shift_reg:reg_PH_Q
+ 36. Parameter Settings for User Entity Instance: ula_bo:BO|shift_reg:reg_PL
+ 37. Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_S0
+ 38. Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_S1
+ 39. Port Connectivity Checks: "ula_bo:BO|shift_reg:reg_PL"
+ 40. Port Connectivity Checks: "ula_bo:BO|adder:somador_P|full_adder:\interator:0:fa"
+ 41. Port Connectivity Checks: "ula_bo:BO|adder:somador_P"
+ 42. Port Connectivity Checks: "ula_bo:BO|mux_1bit:mux_FF"
+ 43. Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_4"
+ 44. Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_3"
+ 45. Port Connectivity Checks: "ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor"
+ 46. Port Connectivity Checks: "ula_bo:BO|subtractor:sub|full_adder:\interator:0:fa"
+ 47. Port Connectivity Checks: "ula_bo:BO|subtractor:sub"
+ 48. Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_8"
+ 49. Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_6"
+ 50. Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_2"
+ 51. Port Connectivity Checks: "ula_bo:BO|shift_reg:reg_A"
+ 52. Elapsed Time Per Partition
+ 53. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Thu Nov 27 20:46:59 2025           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; ULA_mult_div                                    ;
+; Top-level Entity Name              ; ula                                             ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 631                                             ;
+;     Total combinational functions  ; 591                                             ;
+;     Dedicated logic registers      ; 253                                             ;
+; Total registers                    ; 253                                             ;
+; Total pins                         ; 141                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C5AF256A7       ;                    ;
+; Top-level entity name                                                      ; ula                ; ULA_mult_div       ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; VHDL Show LMF Mapping Messages                                             ; Off                ;                    ;
+; VHDL Version                                                               ; VHDL_2008          ; VHDL_1993          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 12     ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                           ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                    ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+; rtl/ula_pack.vhdl                ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/ula_pack.vhdl           ;         ;
+; rtl/subtractor.vhdl              ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/subtractor.vhdl         ;         ;
+; rtl/std_logic_register.vhdl      ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/std_logic_register.vhdl ;         ;
+; rtl/shift_reg.vhdl               ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/shift_reg.vhdl          ;         ;
+; rtl/mux_2to1.vhdl                ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/mux_2to1.vhdl           ;         ;
+; rtl/mux_1bit.vhdl                ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/mux_1bit.vhdl           ;         ;
+; rtl/full_adder.vhdl              ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/full_adder.vhdl         ;         ;
+; rtl/flip_flop.vhdl               ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/flip_flop.vhdl          ;         ;
+; rtl/and_or.vhdl                  ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/and_or.vhdl             ;         ;
+; rtl/adder_subtractor.vhdl        ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/adder_subtractor.vhdl   ;         ;
+; rtl/adder.vhdl                   ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/adder.vhdl              ;         ;
+; rtl/count_less_than_B.vhdl       ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/count_less_than_B.vhdl  ;         ;
+; rtl/ula_bc.vhdl                  ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/ula_bc.vhdl             ;         ;
+; rtl/ula_bo.vhdl                  ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/ula_bo.vhdl             ;         ;
+; rtl/ula.vhdl                     ; yes             ; User VHDL File  ; D:/Projetos UFSC/25.2/SD/AP3/ula-sd/rtl/ula.vhdl                ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 631   ;
+;                                             ;       ;
+; Total combinational functions               ; 591   ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 444   ;
+;     -- 3 input functions                    ; 99    ;
+;     -- <=2 input functions                  ; 48    ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 591   ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 253   ;
+;     -- Dedicated logic registers            ; 253   ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 141   ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 253   ;
+; Total fan-out                               ; 2993  ;
+; Average fan-out                             ; 3.04  ;
++---------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                      ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                               ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+--------------+
+; |ula                                      ; 591 (0)           ; 253 (0)      ; 0           ; 0            ; 0       ; 0         ; 141  ; 0            ; |ula                                                                                              ; work         ;
+;    |ula_bc:BC|                            ; 56 (56)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bc:BC                                                                                    ; work         ;
+;    |ula_bo:BO|                            ; 535 (39)          ; 233 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO                                                                                    ; work         ;
+;       |adder:somador_P|                   ; 64 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P                                                                    ; work         ;
+;          |full_adder:\interator:0:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:0:fa                                         ; work         ;
+;          |full_adder:\interator:10:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:10:fa                                        ; work         ;
+;          |full_adder:\interator:11:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:11:fa                                        ; work         ;
+;          |full_adder:\interator:12:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:12:fa                                        ; work         ;
+;          |full_adder:\interator:13:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:13:fa                                        ; work         ;
+;          |full_adder:\interator:14:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:14:fa                                        ; work         ;
+;          |full_adder:\interator:15:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:15:fa                                        ; work         ;
+;          |full_adder:\interator:16:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:16:fa                                        ; work         ;
+;          |full_adder:\interator:17:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:17:fa                                        ; work         ;
+;          |full_adder:\interator:18:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:18:fa                                        ; work         ;
+;          |full_adder:\interator:19:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:19:fa                                        ; work         ;
+;          |full_adder:\interator:1:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:1:fa                                         ; work         ;
+;          |full_adder:\interator:20:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:20:fa                                        ; work         ;
+;          |full_adder:\interator:21:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:21:fa                                        ; work         ;
+;          |full_adder:\interator:22:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:22:fa                                        ; work         ;
+;          |full_adder:\interator:23:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:23:fa                                        ; work         ;
+;          |full_adder:\interator:24:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:24:fa                                        ; work         ;
+;          |full_adder:\interator:25:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:25:fa                                        ; work         ;
+;          |full_adder:\interator:26:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:26:fa                                        ; work         ;
+;          |full_adder:\interator:27:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:27:fa                                        ; work         ;
+;          |full_adder:\interator:28:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:28:fa                                        ; work         ;
+;          |full_adder:\interator:29:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:29:fa                                        ; work         ;
+;          |full_adder:\interator:2:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:2:fa                                         ; work         ;
+;          |full_adder:\interator:30:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:30:fa                                        ; work         ;
+;          |full_adder:\interator:31:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:31:fa                                        ; work         ;
+;          |full_adder:\interator:3:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:3:fa                                         ; work         ;
+;          |full_adder:\interator:4:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:4:fa                                         ; work         ;
+;          |full_adder:\interator:5:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:5:fa                                         ; work         ;
+;          |full_adder:\interator:6:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:6:fa                                         ; work         ;
+;          |full_adder:\interator:7:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:7:fa                                         ; work         ;
+;          |full_adder:\interator:8:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:8:fa                                         ; work         ;
+;          |full_adder:\interator:9:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder:somador_P|full_adder:\interator:9:fa                                         ; work         ;
+;       |adder_subtractor:add_sub|          ; 49 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub                                                           ; work         ;
+;          |full_adder:\interator:0:adder|  ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:0:adder                             ; work         ;
+;          |full_adder:\interator:10:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:10:adder                            ; work         ;
+;          |full_adder:\interator:11:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:11:adder                            ; work         ;
+;          |full_adder:\interator:12:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:12:adder                            ; work         ;
+;          |full_adder:\interator:13:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:13:adder                            ; work         ;
+;          |full_adder:\interator:14:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:14:adder                            ; work         ;
+;          |full_adder:\interator:15:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:15:adder                            ; work         ;
+;          |full_adder:\interator:16:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:16:adder                            ; work         ;
+;          |full_adder:\interator:17:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:17:adder                            ; work         ;
+;          |full_adder:\interator:18:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:18:adder                            ; work         ;
+;          |full_adder:\interator:19:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:19:adder                            ; work         ;
+;          |full_adder:\interator:1:adder|  ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:1:adder                             ; work         ;
+;          |full_adder:\interator:20:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:20:adder                            ; work         ;
+;          |full_adder:\interator:21:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:21:adder                            ; work         ;
+;          |full_adder:\interator:22:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:22:adder                            ; work         ;
+;          |full_adder:\interator:23:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:23:adder                            ; work         ;
+;          |full_adder:\interator:24:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:24:adder                            ; work         ;
+;          |full_adder:\interator:25:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:25:adder                            ; work         ;
+;          |full_adder:\interator:26:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:26:adder                            ; work         ;
+;          |full_adder:\interator:27:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:27:adder                            ; work         ;
+;          |full_adder:\interator:28:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:28:adder                            ; work         ;
+;          |full_adder:\interator:29:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:29:adder                            ; work         ;
+;          |full_adder:\interator:2:adder|  ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:2:adder                             ; work         ;
+;          |full_adder:\interator:30:adder| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:30:adder                            ; work         ;
+;          |full_adder:\interator:31:adder| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:31:adder                            ; work         ;
+;          |full_adder:\interator:3:adder|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:3:adder                             ; work         ;
+;          |full_adder:\interator:4:adder|  ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:4:adder                             ; work         ;
+;          |full_adder:\interator:5:adder|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:5:adder                             ; work         ;
+;          |full_adder:\interator:6:adder|  ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:6:adder                             ; work         ;
+;          |full_adder:\interator:7:adder|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:7:adder                             ; work         ;
+;          |full_adder:\interator:8:adder|  ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:8:adder                             ; work         ;
+;          |full_adder:\interator:9:adder|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:9:adder                             ; work         ;
+;       |and_or:and_or|                     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|and_or:and_or                                                                      ; work         ;
+;       |count_less_than_B:count_lessth_B|  ; 31 (1)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|count_less_than_B:count_lessth_B                                                   ; work         ;
+;          |subtractor:subtractor|          ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor                             ; work         ;
+;             |full_adder:\interator:13:fa| ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor|full_adder:\interator:13:fa ; work         ;
+;             |full_adder:\interator:20:fa| ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor|full_adder:\interator:20:fa ; work         ;
+;             |full_adder:\interator:27:fa| ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor|full_adder:\interator:27:fa ; work         ;
+;             |full_adder:\interator:30:fa| ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor|full_adder:\interator:30:fa ; work         ;
+;             |full_adder:\interator:6:fa|  ; 6 (6)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor|full_adder:\interator:6:fa  ; work         ;
+;       |flip_flop:flip_flop_FF|            ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|flip_flop:flip_flop_FF                                                             ; work         ;
+;       |mux_1bit:mux_FF|                   ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|mux_1bit:mux_FF                                                                    ; work         ;
+;       |mux_2to1:mux_10|                   ; 114 (114)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|mux_2to1:mux_10                                                                    ; work         ;
+;       |mux_2to1:mux_7|                    ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|mux_2to1:mux_7                                                                     ; work         ;
+;       |mux_2to1:mux_8|                    ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|mux_2to1:mux_8                                                                     ; work         ;
+;       |mux_2to1:mux_9|                    ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|mux_2to1:mux_9                                                                     ; work         ;
+;       |shift_reg:reg_A|                   ; 33 (33)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|shift_reg:reg_A                                                                    ; work         ;
+;       |shift_reg:reg_PH_Q|                ; 34 (34)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|shift_reg:reg_PH_Q                                                                 ; work         ;
+;       |shift_reg:reg_PL|                  ; 33 (33)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|shift_reg:reg_PL                                                                   ; work         ;
+;       |std_logic_register:reg_B|          ; 0 (0)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|std_logic_register:reg_B                                                           ; work         ;
+;       |std_logic_register:reg_S0|         ; 3 (3)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|std_logic_register:reg_S0                                                          ; work         ;
+;       |std_logic_register:reg_S1|         ; 0 (0)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|std_logic_register:reg_S1                                                          ; work         ;
+;       |std_logic_register:reg_ULAOp|      ; 0 (0)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|std_logic_register:reg_ULAOp                                                       ; work         ;
+;       |std_logic_register:reg_count_r|    ; 0 (0)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|std_logic_register:reg_count_r                                                     ; work         ;
+;       |std_logic_register:reg_funct|      ; 0 (0)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|std_logic_register:reg_funct                                                       ; work         ;
+;       |subtractor:sub|                    ; 65 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub                                                                     ; work         ;
+;          |full_adder:\interator:0:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:0:fa                                          ; work         ;
+;          |full_adder:\interator:10:fa|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:10:fa                                         ; work         ;
+;          |full_adder:\interator:11:fa|    ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:11:fa                                         ; work         ;
+;          |full_adder:\interator:12:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:12:fa                                         ; work         ;
+;          |full_adder:\interator:13:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:13:fa                                         ; work         ;
+;          |full_adder:\interator:14:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:14:fa                                         ; work         ;
+;          |full_adder:\interator:15:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:15:fa                                         ; work         ;
+;          |full_adder:\interator:16:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:16:fa                                         ; work         ;
+;          |full_adder:\interator:17:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:17:fa                                         ; work         ;
+;          |full_adder:\interator:18:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:18:fa                                         ; work         ;
+;          |full_adder:\interator:19:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:19:fa                                         ; work         ;
+;          |full_adder:\interator:1:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:1:fa                                          ; work         ;
+;          |full_adder:\interator:20:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:20:fa                                         ; work         ;
+;          |full_adder:\interator:21:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:21:fa                                         ; work         ;
+;          |full_adder:\interator:22:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:22:fa                                         ; work         ;
+;          |full_adder:\interator:23:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:23:fa                                         ; work         ;
+;          |full_adder:\interator:24:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:24:fa                                         ; work         ;
+;          |full_adder:\interator:25:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:25:fa                                         ; work         ;
+;          |full_adder:\interator:26:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:26:fa                                         ; work         ;
+;          |full_adder:\interator:27:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:27:fa                                         ; work         ;
+;          |full_adder:\interator:28:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:28:fa                                         ; work         ;
+;          |full_adder:\interator:29:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:29:fa                                         ; work         ;
+;          |full_adder:\interator:2:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:2:fa                                          ; work         ;
+;          |full_adder:\interator:30:fa|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:30:fa                                         ; work         ;
+;          |full_adder:\interator:31:fa|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:31:fa                                         ; work         ;
+;          |full_adder:\interator:3:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:3:fa                                          ; work         ;
+;          |full_adder:\interator:4:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:4:fa                                          ; work         ;
+;          |full_adder:\interator:5:fa|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:5:fa                                          ; work         ;
+;          |full_adder:\interator:6:fa|     ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:6:fa                                          ; work         ;
+;          |full_adder:\interator:7:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:7:fa                                          ; work         ;
+;          |full_adder:\interator:8:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:8:fa                                          ; work         ;
+;          |full_adder:\interator:9:fa|     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ula|ula_bo:BO|subtractor:sub|full_adder:\interator:9:fa                                          ; work         ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |ula|ula_bc:BC|current_state                                                                                                                                                                                                                                                                                                                                                                                                                    ;
++----------------------+----------------------+--------------------+--------------------+--------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+------------------+-------------------+---------------------+--------------------+-------------------+----------------------+--------------------+--------------------+
+; Name                 ; current_state.PRONTO ; current_state.ERRO ; current_state.DIV4 ; current_state.DIV3 ; current_state.DIV2 ; current_state.DIV1 ; current_state.MULT6 ; current_state.MULT5 ; current_state.MULT4 ; current_state.MULT3 ; current_state.MULT2 ; current_state.MULT1 ; current_state.AD ; current_state.SUB ; current_state.S_AND ; current_state.S_OR ; current_state.SLT ; current_state.DECIDE ; current_state.LOAD ; current_state.INIT ;
++----------------------+----------------------+--------------------+--------------------+--------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+------------------+-------------------+---------------------+--------------------+-------------------+----------------------+--------------------+--------------------+
+; current_state.INIT   ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 0                  ;
+; current_state.LOAD   ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 1                  ; 1                  ;
+; current_state.DECIDE ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 1                    ; 0                  ; 1                  ;
+; current_state.SLT    ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 1                 ; 0                    ; 0                  ; 1                  ;
+; current_state.S_OR   ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 1                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.S_AND  ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 1                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.SUB    ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 1                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.AD     ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.MULT1  ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.MULT2  ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.MULT3  ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.MULT4  ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.MULT5  ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.MULT6  ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.DIV1   ; 0                    ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.DIV2   ; 0                    ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.DIV3   ; 0                    ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.DIV4   ; 0                    ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.ERRO   ; 0                    ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
+; current_state.PRONTO ; 1                    ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                ; 0                 ; 0                   ; 0                  ; 0                 ; 0                    ; 0                  ; 1                  ;
++----------------------+----------------------+--------------------+--------------------+--------------------+--------------------+--------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+------------------+-------------------+---------------------+--------------------+-------------------+----------------------+--------------------+--------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                 ;
++-----------------------------------------------------+----------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal  ; Free of Timing Hazards ;
++-----------------------------------------------------+----------------------+------------------------+
+; ula_bc:BC|next_state.PRONTO_840                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.ERRO_877                       ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.SLT_1432                       ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.S_OR_1395                      ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.S_AND_1358                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.SUB_1321                       ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.AD_1284                        ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.MULT6_1062                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.DIV4_914                       ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.DECIDE_1469                    ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.LOAD_1506                      ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.MULT5_1099                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.MULT1_1247                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.MULT4_1136                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.DIV1_1025                      ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.DIV3_951                       ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.MULT3_1173                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.MULT2_1210                     ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.DIV2_988                       ; ula_bc:BC|Selector27 ; yes                    ;
+; ula_bc:BC|next_state.INIT_1543                      ; ula_bc:BC|Selector27 ; yes                    ;
+; Number of user-specified and inferred latches = 20  ;                      ;                        ;
++-----------------------------------------------------+----------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 253   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 20    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 231   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |ula|ula_bo:BO|shift_reg:reg_A|r_reg[15]               ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |ula|ula_bo:BO|shift_reg:reg_PL|r_reg[5]               ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |ula|ula_bo:BO|std_logic_register:reg_count_r|q_int[5] ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |ula|ula_bo:BO|shift_reg:reg_PH_Q|r_reg[1]             ;
+; 6:1                ; 31 bits   ; 124 LEs       ; 124 LEs              ; 0 LEs                  ; Yes        ; |ula|ula_bo:BO|std_logic_register:reg_S0|q_int[25]     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |ula ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; N              ; 32    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO ;
++----------------+-------+-------------------------------+
+; Parameter Name ; Value ; Type                          ;
++----------------+-------+-------------------------------+
+; n              ; 32    ; Signed Integer                ;
++----------------+-------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_funct ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; n              ; 6     ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_ULAOp ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; n              ; 2     ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|shift_reg:reg_A ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; n              ; 32    ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_B ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; n              ; 32    ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|adder_subtractor:add_sub ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; n              ; 32    ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|and_or:and_or ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; n              ; 32    ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_1 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_2 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_6 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_7 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_count_r ;
++----------------+-------+--------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                         ;
++----------------+-------+--------------------------------------------------------------+
+; n              ; 32    ; Signed Integer                                               ;
++----------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_8 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|subtractor:sub ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|count_less_than_B:count_lessth_B ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; n              ; 32    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor ;
++----------------+-------+--------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------------+
+; n              ; 32    ; Signed Integer                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_3 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_4 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_5 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_9 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; n              ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|mux_2to1:mux_10 ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; n              ; 32    ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|adder:somador_P ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; n              ; 32    ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|shift_reg:reg_PH_Q ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; n              ; 32    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|shift_reg:reg_PL ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; n              ; 32    ; Signed Integer                                 ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_S0 ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; n              ; 32    ; Signed Integer                                          ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ula_bo:BO|std_logic_register:reg_S1 ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; n              ; 32    ; Signed Integer                                          ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|shift_reg:reg_PL"                                                            ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; d       ; Input  ; Info     ; Stuck at GND                                                                        ;
+; bit_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|adder:somador_P|full_adder:\interator:0:fa" ;
++------+-------+----------+--------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                ;
++------+-------+----------+--------------------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at GND                                           ;
++------+-------+----------+--------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|adder:somador_P"                                                              ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; overflow ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|mux_1bit:mux_FF" ;
++------+-------+----------+-----------------------------+
+; Port ; Type  ; Severity ; Details                     ;
++------+-------+----------+-----------------------------+
+; in_1 ; Input ; Info     ; Stuck at GND                ;
++------+-------+----------+-----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_4" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; in_1 ; Input ; Info     ; Stuck at GND               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_3" ;
++-------------+-------+----------+---------------------+
+; Port        ; Type  ; Severity ; Details             ;
++-------------+-------+----------+---------------------+
+; in_0[31..1] ; Input ; Info     ; Stuck at GND        ;
+; in_0[0]     ; Input ; Info     ; Stuck at VCC        ;
++-------------+-------+----------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|count_less_than_B:count_lessth_B|subtractor:subtractor"                            ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; result[30..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; carry_out     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|subtractor:sub|full_adder:\interator:0:fa" ;
++------+-------+----------+-------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                               ;
++------+-------+----------+-------------------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at VCC                                          ;
++------+-------+----------+-------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|subtractor:sub"                                                                ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; carry_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; overflow  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_8" ;
++-------------+-------+----------+---------------------+
+; Port        ; Type  ; Severity ; Details             ;
++-------------+-------+----------+---------------------+
+; in_1[31..1] ; Input ; Info     ; Stuck at GND        ;
+; in_1[0]     ; Input ; Info     ; Stuck at VCC        ;
++-------------+-------+----------+---------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_6" ;
++-------------+-------+----------+---------------------+
+; Port        ; Type  ; Severity ; Details             ;
++-------------+-------+----------+---------------------+
+; in_1[31..6] ; Input ; Info     ; Stuck at GND        ;
+; in_1[4..0]  ; Input ; Info     ; Stuck at GND        ;
+; in_1[5]     ; Input ; Info     ; Stuck at VCC        ;
++-------------+-------+----------+---------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|mux_2to1:mux_2" ;
++-------------+-------+----------+---------------------+
+; Port        ; Type  ; Severity ; Details             ;
++-------------+-------+----------+---------------------+
+; in_1[31..1] ; Input ; Info     ; Stuck at GND        ;
++-------------+-------+----------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ula_bo:BO|shift_reg:reg_A"                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; bit_in  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; bit_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Thu Nov 27 20:46:54 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ULA_mult_div -c ULA_mult_div
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 0 entities, in source file rtl/ula_pack.vhdl
+    Info (12022): Found design unit 1: ula_pack
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/subtractor.vhdl
+    Info (12022): Found design unit 1: subtractor-behavior
+    Info (12023): Found entity 1: subtractor
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/std_logic_register.vhdl
+    Info (12022): Found design unit 1: std_logic_register-behavior
+    Info (12023): Found entity 1: std_logic_register
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/shift_reg.vhdl
+    Info (12022): Found design unit 1: shift_reg-behavior
+    Info (12023): Found entity 1: shift_reg
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/mux_2to1.vhdl
+    Info (12022): Found design unit 1: mux_2to1-behavior
+    Info (12023): Found entity 1: mux_2to1
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/mux_1bit.vhdl
+    Info (12022): Found design unit 1: mux_1bit-rtl
+    Info (12023): Found entity 1: mux_1bit
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/full_adder.vhdl
+    Info (12022): Found design unit 1: full_adder-circuito_logico
+    Info (12023): Found entity 1: full_adder
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/flip_flop.vhdl
+    Info (12022): Found design unit 1: flip_flop-behavior
+    Info (12023): Found entity 1: flip_flop
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/and_or.vhdl
+    Info (12022): Found design unit 1: and_or-behavior
+    Info (12023): Found entity 1: and_or
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/adder_subtractor.vhdl
+    Info (12022): Found design unit 1: adder_subtractor-behavior
+    Info (12023): Found entity 1: adder_subtractor
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/adder.vhdl
+    Info (12022): Found design unit 1: adder-behavior
+    Info (12023): Found entity 1: adder
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/count_less_than_b.vhdl
+    Info (12022): Found design unit 1: count_less_than_B-behavior
+    Info (12023): Found entity 1: count_less_than_B
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/ula_bc.vhdl
+    Info (12022): Found design unit 1: ula_bc-behavior
+    Info (12023): Found entity 1: ula_bc
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/ula_bo.vhdl
+    Info (12022): Found design unit 1: ula_bo-structure
+    Info (12023): Found entity 1: ula_bo
+Info (12021): Found 2 design units, including 1 entities, in source file rtl/ula.vhdl
+    Info (12022): Found design unit 1: ula-structure
+    Info (12023): Found entity 1: ula
+Info (12127): Elaborating entity "ula" for the top level hierarchy
+Info (12129): Elaborating entity "ula_bc" using architecture "A:behavior" for hierarchy "ula_bc:BC"
+Warning (10631): VHDL Process Statement warning at ula_bc.vhdl(39): inferring latch(es) for signal or variable "next_state", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "next_state.PRONTO" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.ERRO" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.DIV4" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.DIV3" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.DIV2" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.DIV1" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.MULT6" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.MULT5" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.MULT4" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.MULT3" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.MULT2" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.MULT1" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.AD" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.SUB" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.S_AND" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.S_OR" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.SLT" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.DECIDE" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.LOAD" at ula_bc.vhdl(39)
+Info (10041): Inferred latch for "next_state.INIT" at ula_bc.vhdl(39)
+Info (12129): Elaborating entity "ula_bo" using architecture "A:structure" for hierarchy "ula_bo:BO"
+Info (12129): Elaborating entity "std_logic_register" using architecture "A:behavior" for hierarchy "ula_bo:BO|std_logic_register:reg_funct"
+Info (12129): Elaborating entity "std_logic_register" using architecture "A:behavior" for hierarchy "ula_bo:BO|std_logic_register:reg_ULAOp"
+Info (12129): Elaborating entity "shift_reg" using architecture "A:behavior" for hierarchy "ula_bo:BO|shift_reg:reg_A"
+Info (12129): Elaborating entity "std_logic_register" using architecture "A:behavior" for hierarchy "ula_bo:BO|std_logic_register:reg_B"
+Info (12129): Elaborating entity "adder_subtractor" using architecture "A:behavior" for hierarchy "ula_bo:BO|adder_subtractor:add_sub"
+Info (12129): Elaborating entity "full_adder" using architecture "A:circuito_logico" for hierarchy "ula_bo:BO|adder_subtractor:add_sub|full_adder:\interator:0:adder"
+Info (12129): Elaborating entity "and_or" using architecture "A:behavior" for hierarchy "ula_bo:BO|and_or:and_or"
+Info (12129): Elaborating entity "mux_2to1" using architecture "A:behavior" for hierarchy "ula_bo:BO|mux_2to1:mux_1"
+Info (12129): Elaborating entity "subtractor" using architecture "A:behavior" for hierarchy "ula_bo:BO|subtractor:sub"
+Info (12129): Elaborating entity "count_less_than_B" using architecture "A:behavior" for hierarchy "ula_bo:BO|count_less_than_B:count_lessth_B"
+Info (12129): Elaborating entity "mux_1bit" using architecture "A:rtl" for hierarchy "ula_bo:BO|mux_1bit:mux_FF"
+Info (12129): Elaborating entity "adder" using architecture "A:behavior" for hierarchy "ula_bo:BO|adder:somador_P"
+Info (12129): Elaborating entity "flip_flop" using architecture "A:behavior" for hierarchy "ula_bo:BO|flip_flop:flip_flop_FF"
+Warning (13012): Latch ula_bc:BC|next_state.PRONTO_840 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bo:BO|std_logic_register:reg_ULAOp|q_int[0]
+Warning (13012): Latch ula_bc:BC|next_state.ERRO_877 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Warning (13012): Latch ula_bc:BC|next_state.SLT_1432 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Warning (13012): Latch ula_bc:BC|next_state.S_OR_1395 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Warning (13012): Latch ula_bc:BC|next_state.S_AND_1358 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Warning (13012): Latch ula_bc:BC|next_state.SUB_1321 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Warning (13012): Latch ula_bc:BC|next_state.AD_1284 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Warning (13012): Latch ula_bc:BC|next_state.MULT1_1247 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Warning (13012): Latch ula_bc:BC|next_state.DIV1_1025 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ula_bc:BC|current_state.DECIDE
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 791 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 75 input pins
+    Info (21059): Implemented 66 output pins
+    Info (21061): Implemented 650 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 4660 megabytes
+    Info: Processing ended: Thu Nov 27 20:46:59 2025
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:04
+
+
