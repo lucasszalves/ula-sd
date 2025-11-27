@@ -22,7 +22,7 @@ entity ula_bc is
 end entity ula_bc;
 
 architecture behavior of ula_bc is
-  type state is (INIT, LOAD, SLT, S_OR, S_AND, SUB, AD, MULT1, MULT2, MULT3, MULT4, MULT5, MULT6, DIV1, DIV2, DIV3, DIV4, ERRO, PRONTO); -- definição dos estados
+  type state is (INIT, LOAD, DECIDE, SLT, S_OR, S_AND, SUB, AD, MULT1, MULT2, MULT3, MULT4, MULT5, MULT6, DIV1, DIV2, DIV3, DIV4, ERRO, PRONTO); -- definição dos estados
   signal current_state, next_state : state; -- sinais para armazenar o estado atual e o próximo estado
 begin
   -- Process para avaliar se o próximo estado receberá INIT (sempre que o reset assíncrono estiver ativado) ou o próximo estado (somente na subida do relógio e se o reset estiver desativado)
@@ -46,6 +46,8 @@ begin
           next_state <= INIT;
         end if;
       when LOAD =>
+        next_state <= DECIDE;
+      when DECIDE =>
         if in_status.C = "000" then
           next_state <= S_AND;
         elsif in_status.C = "001" then
@@ -168,6 +170,25 @@ begin
         out_comandos.cS1    <= '0';
         out_comandos.cULAop <= '1';
         out_comandos.cfunct <= '1';
+      when DECIDE =>
+        out_controle.pronto <= '0';
+        out_controle.erro   <= '0';
+        out_comandos.cB     <= '0';
+        out_comandos.cA     <= '0';
+        out_comandos.sr_A   <= '0';
+        out_comandos.mcount <= '0';
+        out_comandos.ccount <= '0';
+        out_comandos.mPH_Q  <= '0';
+        out_comandos.srPH_Q <= '0';
+        out_comandos.cPH_Q  <= '0';
+        out_comandos.srPL   <= '0';
+        out_comandos.cPL    <= '0';
+        out_comandos.mFF    <= '0';
+        out_comandos.m10    <= '0';
+        out_comandos.cS0    <= '0';
+        out_comandos.cS1    <= '0';
+        out_comandos.cULAop <= '0';
+        out_comandos.cfunct <= '0';
       when SLT =>
         out_controle.pronto <= '0';
         out_controle.erro   <= '0';
