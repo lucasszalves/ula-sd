@@ -254,7 +254,7 @@ begin
 
 
     --------------------------------------------------------------------
-    -- 7) DIV: 4 / 8 = quociente 0, resto 4
+    -- 9) DIV: 4 / 8 = quociente 0, resto 4
     --------------------------------------------------------------------
     entA <= std_logic_vector(to_signed(4, entA'length));
     entB <= std_logic_vector(to_signed(8, entB'length));
@@ -273,6 +273,29 @@ begin
       severity error;
 
     assert S1 = std_logic_vector(to_unsigned(4, N))
+      report "DIV resto errado"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- 10) DIV: 17 / 6 = quociente 2, resto 5
+    --------------------------------------------------------------------
+    entA <= std_logic_vector(to_signed(17, entA'length));
+    entB <= std_logic_vector(to_signed(6, entB'length));
+    ULAOp <= "10";
+    funct <= "100110";
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = std_logic_vector(to_unsigned(2, N))
+      report "DIV quociente errado"
+      severity error;
+
+    assert S1 = std_logic_vector(to_unsigned(5, N))
       report "DIV resto errado"
       severity error;
 
