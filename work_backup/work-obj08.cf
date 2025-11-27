@@ -1,0 +1,48 @@
+v 4
+file . "tb_ula.vhdl" "c86e875d3eadc7759a0eeb9be4465e7a6bf23bba" "20251127234306.855":
+  entity tb_ula at 9( 270) + 0 on 40;
+  architecture sim of tb_ula at 16( 377) + 0 on 41;
+file . "ula_bo.vhdl" "4f2e73ad777569dc21ebf6e7955c247d9aad61ae" "20251127234306.769":
+  entity ula_bo at 11( 484) + 0 on 36;
+  architecture structure of ula_bo at 28( 886) + 0 on 37;
+file . "count_less_than_B.vhdl" "f3799b0979e65b7779d355bc572a3a0f8113b50a" "20251127234306.645":
+  entity count_less_than_b at 10( 469) + 0 on 32;
+  architecture behavior of count_less_than_b at 28( 975) + 0 on 33;
+file . "adder.vhdl" "15351a22a347367644bafc5ab526cbc027fbc2fa" "20251127234306.596":
+  entity adder at 12( 502) + 0 on 28;
+  architecture behavior of adder at 27( 1049) + 0 on 29;
+file . "subtractor.vhdl" "7159cecef1b99f0ea908a231bdf054e129baf502" "20251127234306.450":
+  entity subtractor at 12( 559) + 0 on 25;
+  architecture behavior of subtractor at 28( 1150) + 0 on 26;
+file . "shift_reg.vhdl" "bed9d5d871b892e0ab34cc73e2d520cd766b4876" "20251127234306.401":
+  entity shift_reg at 1( 0) + 0 on 21;
+  architecture behavior of shift_reg at 20( 521) + 0 on 22;
+file . "mux_1bit.vhdl" "c3eb47f129afe5508ff0f9ab40c863ef8ca3f78a" "20251127234306.359":
+  entity mux_1bit at 1( 0) + 0 on 17;
+  architecture rtl of mux_1bit at 13( 229) + 0 on 18;
+file . "flip_flop.vhdl" "c47eba5faa446b3b3e898dffbe81f3a907e1b3c5" "20251127234306.318":
+  entity flip_flop at 1( 0) + 0 on 13;
+  architecture behavior of flip_flop at 12( 246) + 0 on 14;
+file . "and_or.vhdl" "aa1a95866b19ca4c5d1ea3d909128b65a8e3ac84" "20251127234306.277":
+  entity and_or at 10( 452) + 0 on 11;
+  architecture behavior of and_or at 26( 922) + 0 on 12;
+file . "full_adder.vhdl" "dffcd7193f4700d2f1430ce8512e5971272a14cf" "20251127234306.338":
+  entity full_adder at 11( 378) + 0 on 15;
+  architecture circuito_logico of full_adder at 23( 611) + 0 on 16;
+file . "mux_2to1.vhdl" "d3ee21a80abd2e892075692682e0ec9e3a754017" "20251127234306.379":
+  entity mux_2to1 at 11( 468) + 0 on 19;
+  architecture behavior of mux_2to1 at 28( 1041) + 0 on 20;
+file . "std_logic_register.vhdl" "25b98b2eb02ef27cbebcd429678ec2792c827032" "20251127234306.425":
+  entity std_logic_register at 13( 588) + 0 on 23;
+  architecture behavior of std_logic_register at 31( 1267) + 0 on 24;
+file . "ula_pack.vhdl" "c24d02f627df1f92f0322b9f78a4dd3439978e2b" "20251127234306.572":
+  package ula_pack at 17( 478) + 0 on 27;
+file . "adder_subtractor.vhdl" "7c268b440ae34660a7e6691355c461a675b3f2fc" "20251127234306.621":
+  entity adder_subtractor at 13( 635) + 0 on 30;
+  architecture behavior of adder_subtractor at 33( 1400) + 0 on 31;
+file . "ula_bc.vhdl" "14f78eaae46af5ccbfa7ed2d36a870a8428d163b" "20251127234306.717":
+  entity ula_bc at 10( 400) + 0 on 34;
+  architecture behavior of ula_bc at 24( 803) + 0 on 35;
+file . "ula.vhdl" "5fa680fbc67d44f4a574e3b91dd9a51cd8c4ce4b" "20251127234306.822":
+  entity ula at 1( 0) + 0 on 38;
+  architecture structure of ula at 25( 643) + 0 on 39;

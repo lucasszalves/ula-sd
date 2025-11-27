@@ -610,6 +610,47 @@ begin
     assert S0 = std_logic_vector(to_unsigned(0, N))
       report "MULT falhou: esperado 0, obtido " & integer'image(to_integer(unsigned(S0)))
       severity error;
+
+    --------------------------------------------------------------------
+    -- 10)d MULT: 0 × POS → S1:S0 = 16-bit result (para N=8)
+    --------------------------------------------------------------------
+
+    entA <= "00000000";
+    entB <= "00010110";
+    ULAOp <= "10";     
+    funct <= "101011"; -- MULT
+
+    wait until pronto = '0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto = '1';
+
+    assert S0 = std_logic_vector(to_unsigned(0, N))
+      report "MULT falhou: esperado 0, obtido " & integer'image(to_integer(unsigned(S0)))
+      severity error;
+    
+    --------------------------------------------------------------------
+    -- 10)e MULT: 0 × 0 → S1:S0 = 16-bit result (para N=8)
+    --------------------------------------------------------------------
+
+    entA <= "00000000";
+    entB <= "00000000";
+    ULAOp <= "10";     
+    funct <= "101011"; -- MULT
+
+    wait until pronto = '0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto = '1';
+
+    assert S0 = std_logic_vector(to_unsigned(0, N))
+      report "MULT falhou: esperado 0, obtido " & integer'image(to_integer(unsigned(S0)))
+      severity error;
+
     --------------------------------------------------------------------
     -- 11) DIV: NEG / POS → S1:S0 = 16-bit result (para N=8)
     --------------------------------------------------------------------
@@ -688,6 +729,50 @@ begin
 
     assert erro = '1'
       report "DIV falhou: esperado erro = '1' em POS / 0"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- 11)e DIV: 0 / POS → S1:S0 = 16-bit result (para N=8)
+    --------------------------------------------------------------------
+    entA <= "00000000";
+    entB <= std_logic_vector(to_signed(8, entB'length));
+
+    ULAOp <= "10";
+    funct <= "100110";
+
+    wait until erro = '0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto = '1';
+
+    assert S0 = std_logic_vector(to_unsigned(0, N))
+      report "DIV quociente errado"
+      severity error;
+
+    assert S1 = std_logic_vector(to_unsigned(0, N))
+      report "DIV resto errado"
+      severity error;
+
+    --------------------------------------------------------------------
+    -- 11)f DIV: 0 / 0 → S1:S0 = 16-bit result (para N=8)
+    --------------------------------------------------------------------
+    entA <= "00000000";
+    entB <= "00000000";
+
+    ULAOp <= "10";
+    funct <= "100110";
+
+    wait until pronto = '0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until erro = '1';
+
+    assert erro = '1'
+      report "DIV falhou: esperado erro = '1' em 0 / 0"
       severity error;
 
 
