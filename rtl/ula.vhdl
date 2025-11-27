@@ -24,8 +24,8 @@ end entity ula;
 
 architecture structure of ula is
 
-  signal entradas_main : entradas_t(dados(entA(N - 1 downto 0), entB(N - 1 downto 0)));
-  signal saidas_main   : saidas_t(dados(S0(N - 1 downto 0), S1(N - 1 downto 0)));
+  signal entradas_main : entradas_t;
+  signal saidas_main   : saidas_t;
   signal comandos_main : bc_comandos;
   signal status_main   : status_bo;
 

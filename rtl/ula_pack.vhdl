@@ -20,7 +20,9 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 
 package ula_pack is
+  constant N_default : positive := 32;
 
+  subtype word_t is std_logic_vector(N_default-1 downto 0);
   -- Tipo que armazena as entradas do Bloco Operacional
   -- entA: primeiro operando de n bits
   -- entB: segundo operando de n bits
@@ -32,8 +34,8 @@ package ula_pack is
   --		        entfunct: std_logic_vector(5 downto 0);
   --		        entULAOp: std_logic_vector(1 downto 0);
   type bo_entradas is record
-    entA     : std_logic_vector;
-    entB     : std_logic_vector;
+    entA     : word_t;
+    entB     : word_t;
     entfunct : std_logic_vector(5 downto 0);
     entULAOp : std_logic_vector(1 downto 0);
   end record bo_entradas;
@@ -45,8 +47,8 @@ package ula_pack is
   -- Original: 	S0: std_logic_vector;
   --		    	S1: std_logic_vector;
   type bo_saidas is record
-    S0 : std_logic_vector;
-    S1 : std_logic_vector;
+    S0 : word_t;
+    S1 : word_t;
   end record bo_saidas;
 
   -- Tipo que armazena as entradas do Bloco de Controle

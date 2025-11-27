@@ -49,6 +49,8 @@ architecture structure of ula_bo is
   constant one : std_logic_vector(N - 1 downto 0) := std_logic_vector(to_unsigned(1, N));
   constant zero : std_logic_vector(N - 1 downto 0) := (others => '0');
   signal bit_in_PL : std_logic := '0';
+
+  signal OV_internal : std_logic := '0';
 begin
 
 -------------------------PARTE DA MADU FINALIZADA---------------------------
@@ -141,6 +143,7 @@ begin
   -- sinais de status Amz e Bmz
   out_status.Amz <= A(A'high);
   out_status.Bmz <= B(B'high);
+  out_status.OV <= OV_internal;
   
   -- bloco somador/subtrator
   add_sub : entity work.adder_subtractor(behavior)
@@ -151,7 +154,7 @@ begin
       input_a  => A,
       input_b  => B,
       CS       => c2,
-      overflow => out_status.OV,
+      overflow => OV_internal,
       result   => result_add_sub);
 
   -- bloco and/or
@@ -177,7 +180,7 @@ begin
       s_mux => result_mux1);
 
   -- entrada 1 de mux2
-  OV_xor_N <= out_status.OV xor result_add_sub(result_add_sub'high);
+  OV_xor_N <= OV_internal xor result_add_sub(result_add_sub'high);
 
   ent1_mux2 <= (0 => OV_xor_N, others => '0');
 
