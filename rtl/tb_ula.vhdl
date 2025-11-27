@@ -180,7 +180,6 @@ begin
     assert S0 = std_logic_vector(to_unsigned(0, N))
       report "SLT falhou (caso A>B): esperado 0"
       severity error;
-
     --------------------------------------------------------------------
     -- 6) MULT: 6 × 3 = 18  → S1:S0 = 16-bit result (para N=8)
     --------------------------------------------------------------------
@@ -200,12 +199,59 @@ begin
 
     -- resultado 18 decimal
     assert S0 = std_logic_vector(to_unsigned(18 mod 256, N))
-      report "MULT S0 errado: esperado " & integer'image(18)
-      severity error;
+    report "MULT S0 errado: esperado " & integer'image(18)
+    severity error;
 
     assert S1 = std_logic_vector(to_unsigned(18 / 256, N))
+    report "MULT S1 errado (parte alta)"
+    severity error;
+
+    --------------------------------------------------------------------
+    -- 7) MULT: MAX × MAX  → S1:S0 = 16-bit result
+    --------------------------------------------------------------------
+
+    entA <= "01111111";
+    entB <= "01111111";
+
+    ULAOp <= "10";     
+    funct <= "101011"; -- MULT
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until pronto='1';
+
+    assert S0 = "00000001"
+      report "MULT S0 errado: esperado "
+      severity error;
+
+    assert S1 = "00111111"
       report "MULT S1 errado (parte alta)"
       severity error;
+
+    --------------------------------------------------------------------
+    -- 8) MULT: negativo  → S1:S0 = 16-bit result
+    --------------------------------------------------------------------
+
+    entA <= "11111111";
+    entB <= "01001111";
+
+    ULAOp <= "10";     
+    funct <= "101011"; -- MULT
+
+    wait until pronto='0';
+    wait for 10 ns;
+    iniciar <= '1'; wait for 10 ns;
+    iniciar <= '0';
+
+    wait until erro='1' or pronto='1';
+
+    assert erro='1'
+      report "negativo deu pau"
+      severity error;
+
 
     --------------------------------------------------------------------
     -- 7) DIV: 4 / 8 = quociente 0, resto 4
@@ -215,7 +261,7 @@ begin
     ULAOp <= "10";
     funct <= "100110";
 
-    wait until pronto='0';
+    wait until erro='0';
     wait for 10 ns;
     iniciar <= '1'; wait for 10 ns;
     iniciar <= '0';

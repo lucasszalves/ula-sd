@@ -54,10 +54,10 @@ begin
           next_state <= S_OR;
         elsif in_status.C = "010" then
           next_state <= AD;
-        elsif in_status.C = "011" then
-          next_state <= MULT1;
         elsif ((in_status.C = "100" and (in_status.Amz = '1' or in_status.Bmz = '1' or in_status.Bz = '1')) or (in_status.C = "011" and (in_status.Amz = '1' or in_status.Bmz = '1'))) then
             next_state <= ERRO;
+        elsif in_status.C = "011" then
+          next_state <= MULT1;
         elsif in_status.C = "100" then
           next_state <= DIV1;
         elsif in_status.C = "110" then
