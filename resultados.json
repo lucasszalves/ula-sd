@@ -1,0 +1,32 @@
+{
+    "dupla": {
+        "nome": "AP3-05235A-Grupo-B",
+        "alunos": [
+            {"nome": "Manuela Skrsypcsak Kist", "matricula": "25100471"},
+            {"nome": "Renato Noskoski Kissel", "matricula": "25100477"},
+            {"nome": "Stella Silva Weege", "matricula": "25100479"},  
+            {"nome": "Lucas Alves de Souza", "matricula": "25100482"},
+            {"nome": "Mateus Corrêa Mendes Pinto", "matricula": "25100499"},
+            {"nome": "Maria Eduarda de Oliveira Zuquetto", "matricula": "25100505"},
+            {"nome": "Marco Antonio Colla", "matricula": "25105142"},
+            {"nome": "Gabriel Dornelles Machado", "matricula": "25105147"}
+        ]
+    },
+    "quartus": {
+        "os": "Windows 11",
+        "versao": "13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition",
+        "fpga": {
+            "familia": "Cyclone II",
+            "dispositivo": "EP2C5AF256A7"
+        }
+    },
+    "utilizacao": {
+        "total combinational functions": 591,
+        "dedicated logic registers": 253,
+        "total pins": 141
+    },
+    "atraso": {
+        "Fmax": 45.11,
+        "unidade": "MHz"
+    }
+}
